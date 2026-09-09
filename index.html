@@ -644,22 +644,26 @@ body {
 <!-- ─── 1. INTERACTIVE GIFT-WRAPPED INVITATION ─── -->
 <div id="envelope-overlay">
   <div class="env-container" id="envContainer">
-    <svg class="env-svg env-svg--back" viewBox="0 0 400 306" aria-hidden="true">
+    <svg class="env-svg env-svg--back" viewBox="0 0 400 306" shape-rendering="geometricPrecision" aria-hidden="true">
       <defs>
         <linearGradient id="gMouth" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#3B2C1A" stop-opacity="0.32"/>
-          <stop offset="0.65" stop-color="#3B2C1A" stop-opacity="0.05"/>
+          <stop offset="0" stop-color="#3B2C1A" stop-opacity="0.30"/>
+          <stop offset="0.7" stop-color="#3B2C1A" stop-opacity="0.05"/>
           <stop offset="1" stop-color="#3B2C1A" stop-opacity="0"/>
         </linearGradient>
-        <linearGradient id="gFlap" x1="0" y1="0" x2="0.08" y2="1">
-          <stop offset="0" stop-color="#F6F0E2"/><stop offset="1" stop-color="#E6DDC7"/>
+        <linearGradient id="gPaper" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F5EEDD"/><stop offset="1" stop-color="#E7DDC4"/>
+        </linearGradient>
+        <linearGradient id="gFlap" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F9F4E8"/><stop offset="1" stop-color="#EFE7D3"/>
         </linearGradient>
       </defs>
-      <rect x="4" y="2" width="392" height="302" rx="11" fill="#F1EAD9"/>
-      <rect class="env-mouth" x="5" y="3" width="390" height="171" rx="10" fill="url(#gMouth)"/>
+      <rect x="3" y="2" width="394" height="303" rx="12" fill="url(#gPaper)"/>
+      <rect class="env-mouth" x="5" y="4" width="390" height="160" rx="10" fill="url(#gMouth)"/>
       <g class="ef-flap">
-        <path d="M6 6 L200 174 L394 6 Z" fill="url(#gFlap)" stroke="#D3C9B1" stroke-width="1"
-              style="filter: drop-shadow(0 8px 9px rgba(10,18,28,0.16))"/>
+        <path d="M4 4 L194 163 Q200 170 206 163 L396 4 Z" fill="url(#gFlap)"
+              style="filter: drop-shadow(0 4px 6px rgba(58,43,22,0.16)) drop-shadow(0 1px 1px rgba(58,43,22,0.10))"/>
+        <path d="M5 5 L197 165 Q200 167 203 165 L395 5" fill="none" stroke="#FCFAF3" stroke-opacity="0.5" stroke-width="0.8"/>
       </g>
     </svg>
 
@@ -672,22 +676,24 @@ body {
       </div>
     </div>
 
-    <svg class="env-svg env-svg--front" viewBox="0 0 400 306" aria-hidden="true">
+    <svg class="env-svg env-svg--front" viewBox="0 0 400 306" shape-rendering="geometricPrecision" aria-hidden="true">
       <defs>
-        <linearGradient id="gFront" x1="0" y1="0" x2="0.22" y2="1">
-          <stop offset="0" stop-color="#F8F3E7"/><stop offset="1" stop-color="#E4DBC5"/>
+        <linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F1E9D6"/><stop offset="1" stop-color="#E4DAC0"/>
         </linearGradient>
         <radialGradient id="gWax" cx="0.36" cy="0.3" r="0.85">
           <stop offset="0" stop-color="#EAD7AE"/><stop offset="0.45" stop-color="#C9A876"/><stop offset="1" stop-color="#89693C"/>
         </radialGradient>
       </defs>
 
-      <path class="ef-pocket" d="M4 6 L200 174 L396 6 L396 296 Q396 306 386 306 L14 306 Q4 306 4 296 Z"
-            fill="url(#gFront)" stroke="#D3C9B1" stroke-width="1"/>
-      <path d="M8 12 L200 179 L392 12" stroke="#7A5F38" stroke-opacity="0.16" stroke-width="2.4" fill="none" style="filter: blur(1.4px)"/>
-      <path d="M5 7 L200 175 L395 7" stroke="#EFE7D3" stroke-opacity="0.8" stroke-width="1" fill="none"/>
+      <path class="ef-pocket" d="M4 4 L194 163 Q200 170 206 163 L396 4 L396 297 Q396 306 387 306 L13 306 Q4 306 4 297 Z"
+            fill="url(#gFront)"/>
+      <path d="M6 7 L197 166 Q200 169 203 166 L394 7" fill="none" stroke="#3C2C15" stroke-opacity="0.13"
+            stroke-width="3.6" stroke-linecap="round" style="filter: blur(2.4px)"/>
+      <path d="M6 6 L198 165 Q200 167 202 165 L394 6" fill="none" stroke="#4A3A20" stroke-opacity="0.10"
+            stroke-width="1" stroke-linecap="round"/>
 
-      <g transform="translate(200,170)">
+      <g transform="translate(200,166)">
         <g class="ef-seal">
           <ellipse cx="1.5" cy="4" rx="25" ry="24" fill="#0A121C" fill-opacity="0.22"/>
           <circle r="24" fill="url(#gWax)" stroke="#7C5E38" stroke-width="1.4"/>
