@@ -159,10 +159,13 @@ body {
 
 /* the whole envelope fades & settles away as one unit — only after the card is fully out */
 .env-svg--back, .env-svg--front {
-  transition: opacity 0.8s ease 1.95s, transform 0.9s cubic-bezier(0.45,0,0.7,0.4) 1.95s;
+  transition: opacity 0.6s ease 1.95s, transform 0.75s cubic-bezier(0.45,0,0.7,0.4) 1.95s,
+              visibility 0s linear 2.6s;
 }
 .env-container.open .env-svg--back,
-.env-container.open .env-svg--front { opacity: 0; transform: translateY(48px) scale(0.93); }
+.env-container.open .env-svg--front {
+  opacity: 0; visibility: hidden; transform: translateY(48px) scale(0.93);
+}
 
 .env-cta-hint {
   color: #FFFFFF; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 25px;
@@ -1145,6 +1148,9 @@ function triggerOpenEnvelope() {
       fireSparkles(r.left + r.width / 2, r.top + r.height / 3, ['#C9A876', '#FFFFFF', '#7FA1C4']);
     }, 2050);
   }
+  if (!rm) setTimeout(() => {
+    envContainer.querySelectorAll('.env-svg').forEach((s) => { s.style.display = 'none'; });
+  }, 2650);
   setTimeout(() => {
     envOverlay.classList.add('opened');
     appContent.classList.add('visible');
@@ -1153,7 +1159,7 @@ function triggerOpenEnvelope() {
     initSaveDateHeart();
     initParallax();
     initTilt();
-  }, rm ? 650 : 2950);
+  }, rm ? 650 : 2850);
 }
 /* pointerdown fires instantly on tap/click (before the slower synthetic 'click');
    'open' class is set on the first one to land, so click can't double-fire it */
