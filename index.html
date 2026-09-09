@@ -96,129 +96,67 @@ body {
 #envelope-overlay.opened { opacity: 0; visibility: hidden; pointer-events: none; }
 
 .env-container {
-  position: relative; width: min(380px, 90vw); height: 500px;
-  animation: envIdle 4.5s ease-in-out infinite;
-  filter: drop-shadow(0 42px 55px rgba(10,18,28,0.5));
+  position: relative; width: min(400px, 92vw); aspect-ratio: 400 / 306;
+  overflow: hidden;
+  animation: envIdle 5s ease-in-out infinite;
 }
-.env-container.open { animation: none; }
-@keyframes envIdle { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.012) translateY(-6px); } }
+.env-container.open { animation: none; overflow: visible; }
+@keyframes envIdle { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.014) translateY(-7px); } }
 
-.env-stage { position: absolute; inset: 0; }
-
-.grain {
-  position: absolute; inset: 0; opacity: 0.05; pointer-events: none; border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Back panel of the envelope */
-.env-back {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 360px; z-index: 1;
-  background: linear-gradient(158deg, #FBFAF6 0%, #ECE5D8 100%);
-  border: 1px solid #E2DBCB; border-radius: 6px;
-  transition: transform 0.8s cubic-bezier(0.5,0,0.75,0.5) 1.3s, opacity 0.65s ease 1.5s;
-}
-.env-back::before {   /* soft warm shadow inside the envelope mouth, revealed as the flap lifts */
-  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 130px; border-radius: 6px 6px 0 0;
-  background: linear-gradient(to bottom, rgba(70,52,34,0.28), rgba(70,52,34,0.06) 60%, transparent);
-  opacity: 0; transition: opacity 0.5s ease 0.35s;
-}
-.env-container.open .env-back::before { opacity: 1; }
-.env-container.open .env-back { transform: translateY(120px) scale(0.95); opacity: 0; }
+.env-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.env-svg--back { z-index: 1; filter: drop-shadow(0 34px 48px rgba(10,18,28,0.5)); }
+.env-svg--front { z-index: 3; }
+.env-svg text { font-family: 'Pinyon Script', cursive; }
+.es-mono { font-size: 25px; fill: var(--blue-deep); }
 
 /* Invitation card — tucked inside, slides straight up out of the envelope */
-.env-card-preview {
-  position: absolute; left: 26px; right: 26px; top: 208px; height: 290px; z-index: 2;
-  background: #FFFDF8; border: 1px solid #E7E1D2; border-radius: 3px;
-  box-shadow: 0 6px 18px rgba(10,18,28,0.14); overflow: hidden;
+.env-card {
+  position: absolute; left: 10%; right: 10%; top: 63%; height: 36%; z-index: 2;
+  background: linear-gradient(#FFFEFA, #FFFCF4); border: 1px solid #E9E2D0; border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(10,18,28,0.14);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 24px 20px;
+  text-align: center; padding: 4% 8%; gap: 6px;
   transform: translateY(0);
-  transition: transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.9s, box-shadow 0.9s ease 0.95s;
+  transition: transform 1.15s cubic-bezier(0.16,1,0.3,1) 0.7s, box-shadow 0.8s ease 0.85s;
 }
-.env-card-preview::after {   /* warm glow behind the card */
-  content: ''; position: absolute; inset: -80px; z-index: -1;
-  background: radial-gradient(circle, rgba(201,168,118,0.32) 0%, transparent 70%);
-  opacity: 0; transition: opacity 1s ease 1.7s;
+.env-card::after {
+  content: ''; position: absolute; inset: -70px; z-index: -1;
+  background: radial-gradient(circle, rgba(201,168,118,0.34) 0%, transparent 70%);
+  opacity: 0; transition: opacity 1s ease 1.55s;
 }
-.env-container.open .env-card-preview {
-  transform: translateY(-280px);
-  box-shadow: 0 36px 70px rgba(10,18,28,0.4);
+.env-container.open .env-card {
+  transform: translateY(-210px);
+  box-shadow: 0 32px 62px rgba(10,18,28,0.4);
 }
-.env-container.open .env-card-preview::after { opacity: 1; }
+.env-container.open .env-card::after { opacity: 1; }
 
-.env-card-preview .cp-sub { font-size: 0.54rem; letter-spacing: 0.28em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; font-weight: 700; }
-.env-card-preview .cp-title { font-family: 'Pinyon Script', cursive; font-size: 3rem; color: var(--blue-deep); line-height: 0.95; }
-.env-card-preview .cp-amp { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--gold); margin: 2px 0; }
-.env-card-preview .cp-date { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 0.78rem; color: var(--blue-deep); margin-top: 14px; letter-spacing: 0.15em; }
-.env-card-preview .cp-sub, .env-card-preview .cp-title, .env-card-preview .cp-amp, .env-card-preview .cp-date {
-  opacity: 0.5; transform: translateY(7px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
-}
-.env-container.open .env-card-preview .cp-sub   { opacity: 1; transform: translateY(0); transition-delay: 1.75s; }
-.env-container.open .env-card-preview .cp-title { opacity: 1; transform: translateY(0); transition-delay: 1.88s; }
-.env-container.open .env-card-preview .cp-amp   { opacity: 1; transform: translateY(0); transition-delay: 2s; }
-.env-container.open .env-card-preview .cp-date  { opacity: 1; transform: translateY(0); transition-delay: 2.12s; }
+.env-card .cp-mono { display: flex; align-items: center; gap: 5px; font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 9.5vw, 2.9rem); color: var(--blue-deep); line-height: 0.8; }
+.env-card .cp-mono i { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.4em; color: var(--gold); }
+.env-card .cp-date { font-family: 'Special Elite', monospace; font-size: clamp(0.58rem, 2vw, 0.72rem); letter-spacing: 0.16em; color: var(--blue-deep); }
+.env-card > * { opacity: 0.5; transform: translateY(6px); transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1); }
+.env-container.open .env-card .cp-mono { opacity: 1; transform: none; transition-delay: 1.4s; }
+.env-container.open .env-card .cp-date { opacity: 1; transform: none; transition-delay: 1.52s; }
 
-/* Front panel — the face of the envelope; stays put while the card emerges, then drops away */
-.env-front {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 320px; z-index: 4; overflow: hidden;
-  background: linear-gradient(160deg, #F6F1E5 0%, #EAE2D1 100%);
-  border: 1px solid #E0D9C7; border-radius: 0 0 6px 6px;
-  clip-path: polygon(0 30px, 50% 0, 100% 30px, 100% 100%, 0 100%);
-  box-shadow: inset 0 3px 6px rgba(120,95,55,0.08);
-  transition: transform 0.8s cubic-bezier(0.5,0,0.75,0.5) 1.35s, opacity 0.6s ease 1.55s;
-}
-.env-container.open .env-front { transform: translateY(130px); opacity: 0; }
-.env-front span {  /* the two diagonal fold creases radiating from the peak */
-  position: absolute; top: 0; left: 50%; width: 1px; height: 420px; background: rgba(120,95,55,0.14);
-  transform-origin: top center;
-}
-.ef-l { transform: rotate(-31deg); }
-.ef-r { transform: rotate(31deg); }
-.ef-b { display: none; }
+/* Wax seal — presses in, then lifts and tumbles away as one piece */
+.ef-seal { transform-box: fill-box; transform-origin: center;
+  transition: transform 0.62s cubic-bezier(0.5,0,0.72,0.35), opacity 0.5s ease 0.12s; }
+.env-container.open .ef-seal { transform: translate(3px, 56px) rotate(38deg) scale(0.5); opacity: 0; }
 
-/* Top flap — lifts open (per-element perspective so it never disturbs sibling stacking) */
-.env-flap {
-  position: absolute; top: 90px; left: 0; width: 100%; height: 195px; z-index: 6;
-  transform-origin: top center;
-}
-.env-flap span {
-  position: absolute; top: 0; left: 50%; width: 0; height: 0; border-style: solid;
-  transform: translateX(-50%);
-}
-.env-flap-face  { border-width: 190px 190px 0 190px; border-color: #F2ECDE transparent transparent transparent;
-  filter: drop-shadow(0 8px 10px rgba(10,18,28,0.22)); }
-.env-flap-liner { display: none; }
-.env-container.open .env-flap { animation: flapOpen 0.8s cubic-bezier(0.4,0,0.3,1) forwards; }
-@keyframes flapOpen {
-  0%   { transform: perspective(760px) rotateX(0deg);   opacity: 1; }
-  55%  { transform: perspective(760px) rotateX(80deg);  opacity: 1; }
-  100% { transform: perspective(760px) rotateX(112deg); opacity: 0; }
-}
+/* Top flap — opens back on its hinge */
+.ef-flap { transform-box: fill-box; transform-origin: top; will-change: transform;
+  transition: transform 0.95s cubic-bezier(0.42,0,0.26,1); }
+.env-container.open .ef-flap { transform: perspective(720px) rotateX(-150deg); }
 
-/* Wax seal — presses in, cracks, and the halves tumble off */
-.env-wax-seal {
-  position: absolute; top: 200px; left: 50%; transform: translateX(-50%); width: 58px; height: 58px;
-  z-index: 8; filter: drop-shadow(0 7px 16px rgba(10,18,28,0.42));
-  transition: transform 0.28s cubic-bezier(0.34,1.6,0.64,1);
+/* dark inside of the envelope mouth, revealed as the flap lifts */
+.env-mouth { opacity: 0; transition: opacity 0.55s ease 0.3s; }
+.env-container.open .env-mouth { opacity: 1; }
+
+/* the whole envelope fades & settles away as one unit once the card is out */
+.env-svg--back, .env-svg--front {
+  transition: opacity 0.75s ease 1.5s, transform 0.85s cubic-bezier(0.45,0,0.7,0.4) 1.5s;
 }
-.seal-half {
-  position: absolute; top: 0; height: 100%; width: 52%;
-  background: radial-gradient(circle at 36% 30%, #E9DAC0 0%, var(--gold) 46%, #9C7D48 100%);
-  box-shadow: inset 0 2px 4px rgba(255,255,255,0.42), inset 0 -4px 8px rgba(0,0,0,0.28);
-  border: 2px solid #8A6D3E;
-  transition: transform 0.6s cubic-bezier(0.4,0,0.7,0.4), opacity 0.5s ease 0.15s;
-}
-.seal-half--l { left: 0;  border-radius: 29px 0 0 29px; border-right: 0; transform-origin: right center; }
-.seal-half--r { right: 0; border-radius: 0 29px 29px 0; border-left: 0; transform-origin: left center; }
-.seal-mono {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1;
-  color: var(--blue-deep); font-family: 'Pinyon Script', cursive; font-size: 30px; transition: opacity 0.18s ease;
-}
-.env-container.open .env-wax-seal { transform: translateX(-50%) translateY(3px) scale(1.06); }
-.env-container.open .seal-mono { opacity: 0; }
-.env-container.open .seal-half--l { transform: translate(-13px, 26px) rotate(-28deg); opacity: 0; }
-.env-container.open .seal-half--r { transform: translate(13px, 28px) rotate(30deg); opacity: 0; }
+.env-container.open .env-svg--back,
+.env-container.open .env-svg--front { opacity: 0; transform: translateY(44px) scale(0.94); }
 
 .env-cta-hint {
   color: #FFFFFF; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 25px;
@@ -666,9 +604,9 @@ body {
   .photo-single::before { animation: none !important; opacity: 0 !important; }
   .verse.vw-typing { animation: none !important; }
   .env-container { animation: none !important; }
-  .env-container.open .env-card-preview { transform: translateY(-280px) !important; }
-  .env-container.open .env-flap { animation: none !important; opacity: 0 !important; }
-  .env-back, .env-front, .env-flap, .seal-half, .env-wax-seal, .env-card-preview, .env-cta-hint {
+  .env-container.open .env-card { transform: translateY(-215px) !important; }
+  .env-container.open .ef-flap { transform: rotateX(0) !important; }
+  .ef-seal, .ef-flap, .env-mouth, .env-svg--back, .env-svg--front, .env-card, .env-card > *, .env-cta-hint {
     transition-duration: 0.3s !important; transition-delay: 0s !important;
   }
 }
@@ -691,27 +629,55 @@ body {
 <!-- ─── 1. INTERACTIVE GIFT-WRAPPED INVITATION ─── -->
 <div id="envelope-overlay">
   <div class="env-container" id="envContainer">
-    <div class="env-stage">
-      <div class="env-back"></div>
+    <svg class="env-svg env-svg--back" viewBox="0 0 400 306" aria-hidden="true">
+      <defs>
+        <linearGradient id="gMouth" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3B2C1A" stop-opacity="0.32"/>
+          <stop offset="0.65" stop-color="#3B2C1A" stop-opacity="0.05"/>
+          <stop offset="1" stop-color="#3B2C1A" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect x="4" y="8" width="392" height="290" rx="11" fill="#F1EAD9"/>
+      <rect class="env-mouth" x="5" y="9" width="390" height="150" rx="10" fill="url(#gMouth)"/>
+    </svg>
 
-      <div class="env-card-preview">
-        <div class="grain"></div>
-        <div class="cp-sub" data-i18n="envCardSub">Nikoh To'yi Taklifnomasi</div>
-        <div class="cp-title">A</div>
-        <div class="cp-amp">&amp;</div>
-        <div class="cp-title">N</div>
-        <div class="cp-date">04.10.2026</div>
-      </div>
-
-      <div class="env-front"><span class="ef-l"></span><span class="ef-r"></span><span class="ef-b"></span></div>
-      <div class="env-flap"><span class="env-flap-face"></span></div>
-
-      <div class="env-wax-seal">
-        <span class="seal-half seal-half--l"></span>
-        <span class="seal-half seal-half--r"></span>
-        <span class="seal-mono">A&amp;N</span>
-      </div>
+    <div class="env-card">
+      <div class="cp-mono"><span>A</span><i>&amp;</i><span>N</span></div>
+      <div class="cp-date">04 · 10 · 2026</div>
     </div>
+
+    <svg class="env-svg env-svg--front" viewBox="0 0 400 306" aria-hidden="true">
+      <defs>
+        <linearGradient id="gFront" x1="0" y1="0" x2="0.22" y2="1">
+          <stop offset="0" stop-color="#F8F3E7"/><stop offset="1" stop-color="#E4DBC5"/>
+        </linearGradient>
+        <linearGradient id="gFlap" x1="0" y1="0" x2="0.08" y2="1">
+          <stop offset="0" stop-color="#F6F0E2"/><stop offset="1" stop-color="#E6DDC7"/>
+        </linearGradient>
+        <radialGradient id="gWax" cx="0.36" cy="0.3" r="0.85">
+          <stop offset="0" stop-color="#EAD7AE"/><stop offset="0.45" stop-color="#C9A876"/><stop offset="1" stop-color="#89693C"/>
+        </radialGradient>
+      </defs>
+
+      <path class="ef-pocket" d="M4 128 L200 190 L396 128 L396 288 Q396 298 386 298 L14 298 Q4 298 4 288 Z"
+            fill="url(#gFront)" stroke="#DBD2BC" stroke-width="1"/>
+      <path d="M4 128 L200 190 M396 128 L200 190" stroke="#7A5F38" stroke-opacity="0.14" stroke-width="1.3" fill="none"/>
+
+      <g class="ef-flap">
+        <path d="M4 20 L200 190 L396 20 Z" fill="url(#gFlap)" stroke="#DBD2BC" stroke-width="1"
+              style="filter: drop-shadow(0 7px 10px rgba(10,18,28,0.22))"/>
+      </g>
+
+      <g transform="translate(200,184)">
+        <g class="ef-seal">
+          <ellipse cx="1.5" cy="4" rx="25" ry="24" fill="#0A121C" fill-opacity="0.22"/>
+          <circle r="24" fill="url(#gWax)" stroke="#7C5E38" stroke-width="1.4"/>
+          <circle r="18.5" fill="none" stroke="#000" stroke-opacity="0.15" stroke-width="1.6"/>
+          <circle r="24" fill="none" stroke="#fff" stroke-opacity="0.32" stroke-width="1" transform="translate(-0.6,-0.9)"/>
+          <text class="es-mono" text-anchor="middle" dy="0.33em">A&amp;N</text>
+        </g>
+      </g>
+    </svg>
   </div>
   <div class="env-cta-hint"><span data-i18n="envHint">Ochish uchun bosing</span> ✦</div>
 </div>
@@ -1160,17 +1126,17 @@ function triggerOpenEnvelope() {
   envContainer.classList.add('open');
   startMusic();
   const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const seal = envContainer.querySelector('.env-wax-seal');
-  const card = envContainer.querySelector('.env-card-preview');
+  const seal = envContainer.querySelector('.ef-seal');
+  const card = envContainer.querySelector('.env-card');
   if (!rm) {
     setTimeout(() => {
       const r = seal.getBoundingClientRect();
       fireSparkles(r.left + r.width / 2, r.top + r.height / 2, ['#C9A876', '#E4CE9E', '#FFFFFF']);
-    }, 380);
+    }, 320);
     setTimeout(() => {
       const r = card.getBoundingClientRect();
-      fireSparkles(r.left + r.width / 2, r.top + r.height / 3, ['#C9A876', '#FFFFFF', '#7FA1C4']);
-    }, 2000);
+      fireSparkles(r.left + r.width / 2, r.top + r.height / 2.4, ['#C9A876', '#FFFFFF', '#7FA1C4']);
+    }, 1850);
   }
   setTimeout(() => {
     envOverlay.classList.add('opened');
@@ -1180,7 +1146,7 @@ function triggerOpenEnvelope() {
     initSaveDateHeart();
     initParallax();
     initTilt();
-  }, rm ? 700 : 2550);
+  }, rm ? 650 : 2400);
 }
 /* pointerdown fires instantly on tap/click (before the slower synthetic 'click');
    'open' class is set on the first one to land, so click can't double-fire it */
