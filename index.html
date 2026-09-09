@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Akromjon & Nozima — Nikoh To'yi Taklifnomasi</title>
+<meta name="description" content="Akromjon va Nozimaning nikoh to'yi taklifnomasi. 4-Oktabr 2026, Safina to'yxonasi, Andijon."/>
+<meta name="theme-color" content="#2F4C6B"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%8D%3C/text%3E%3C/svg%3E"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Akromjon & Nozima — Nikoh To'yi Taklifnomasi"/>
+<meta property="og:description" content="Bizni to'yimizda ko'rishdan mamnun bo'lamiz! 4-Oktabr 2026, Safina To'yxonasi, Andijon."/>
+<meta property="og:image" content="photos/bouquet-blue-hydrangea-hero.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Allura&family=Pinyon+Script&family=Special+Elite&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F3F8FB;
+  --bg-2: #E9F1F6;
+  --paper: #FFFFFF;
+  --blue: #7FA1C4;
+  --blue-deep: #2F4C6B;
+  --gold: #C9A876;
+  --rose: #D98C9A;
+  --rose-deep: #B85C6D;
+  --ink: #2F4C6B;
+  --muted: #6E88A0;
+  --line: rgba(47, 76, 107, 0.14);
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Jost', -apple-system, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+::selection { background: var(--blue); color: #fff; }
+
+#petals-canvas, #confetti-canvas { position: fixed; inset: 0; pointer-events: none; }
+#petals-canvas { z-index: 1; }
+#confetti-canvas { z-index: 10000; }
+
+.display { font-family: 'Playfair Display', serif; }
+.script-accent { font-family: 'Allura', cursive; }
+
+/* ─── FIXED PAGE BACKGROUND PHOTO ─── */
+.site-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    linear-gradient(rgba(243,248,251,0.76), rgba(243,248,251,0.84)),
+    url('photos/venue-arch.jpg') center 22% / cover no-repeat;
+}
+
+/* ─── LANGUAGE SWITCHER ─── */
+#langSwitch {
+  position: relative; z-index: 20; display: flex; justify-content: center; gap: 6px;
+  padding: 14px 0 0;
+}
+.lang-btn {
+  background: none; border: 1px solid var(--line); border-radius: 20px; padding: 5px 13px;
+  font-family: 'Jost', sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--muted); cursor: pointer; transition: all 0.25s ease;
+}
+.lang-btn.active { background: var(--blue-deep); color: #FFFFFF; border-color: var(--blue-deep); }
+.lang-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue-deep); }
+
+.music-toggle {
+  position: fixed; right: 16px; bottom: 16px; z-index: 500;
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--paper); color: var(--blue-deep); font-size: 1.05rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(47,76,107,0.2);
+  opacity: 0; pointer-events: none; transform: scale(0.7);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.music-toggle.visible { opacity: 1; pointer-events: auto; transform: scale(1); }
+.music-toggle.muted { color: var(--muted); }
+
+/* ─── 1. INTERACTIVE ENVELOPE OVERLAY ─── */
+#envelope-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(rgba(20,32,48,0.62), rgba(20,32,48,0.72)), url('photos/venue-arch.jpg') center 20% / cover no-repeat;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 20px; transition: opacity 0.9s ease, visibility 0.9s ease; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; pointer-events: auto;
+}
+#envelope-overlay.opened { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.env-container {
+  position: relative; width: min(380px, 90vw); height: 500px;
+  animation: envIdle 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 42px 55px rgba(10,18,28,0.5));
+}
+.env-container.open { animation: none; }
+@keyframes envIdle { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.012) translateY(-6px); } }
+
+.env-stage { position: absolute; inset: 0; }
+
+.grain {
+  position: absolute; inset: 0; opacity: 0.05; pointer-events: none; border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Back panel of the envelope */
+.env-back {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 360px; z-index: 1;
+  background: linear-gradient(158deg, #FBFAF6 0%, #ECE5D8 100%);
+  border: 1px solid #E2DBCB; border-radius: 6px;
+  transition: transform 0.8s cubic-bezier(0.5,0,0.75,0.5) 1.3s, opacity 0.65s ease 1.5s;
+}
+.env-back::before {   /* soft warm shadow inside the envelope mouth, revealed as the flap lifts */
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 130px; border-radius: 6px 6px 0 0;
+  background: linear-gradient(to bottom, rgba(70,52,34,0.28), rgba(70,52,34,0.06) 60%, transparent);
+  opacity: 0; transition: opacity 0.5s ease 0.35s;
+}
+.env-container.open .env-back::before { opacity: 1; }
+.env-container.open .env-back { transform: translateY(120px) scale(0.95); opacity: 0; }
+
+/* Invitation card — tucked inside, slides straight up out of the envelope */
+.env-card-preview {
+  position: absolute; left: 26px; right: 26px; top: 208px; height: 290px; z-index: 2;
+  background: #FFFDF8; border: 1px solid #E7E1D2; border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(10,18,28,0.14); overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 24px 20px;
+  transform: translateY(0);
+  transition: transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.9s, box-shadow 0.9s ease 0.95s;
+}
+.env-card-preview::after {   /* warm glow behind the card */
+  content: ''; position: absolute; inset: -80px; z-index: -1;
+  background: radial-gradient(circle, rgba(201,168,118,0.32) 0%, transparent 70%);
+  opacity: 0; transition: opacity 1s ease 1.7s;
+}
+.env-container.open .env-card-preview {
+  transform: translateY(-280px);
+  box-shadow: 0 36px 70px rgba(10,18,28,0.4);
+}
+.env-container.open .env-card-preview::after { opacity: 1; }
+
+.env-card-preview .cp-sub { font-size: 0.54rem; letter-spacing: 0.28em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; font-weight: 700; }
+.env-card-preview .cp-title { font-family: 'Pinyon Script', cursive; font-size: 3rem; color: var(--blue-deep); line-height: 0.95; }
+.env-card-preview .cp-amp { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--gold); margin: 2px 0; }
+.env-card-preview .cp-date { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 0.78rem; color: var(--blue-deep); margin-top: 14px; letter-spacing: 0.15em; }
+.env-card-preview .cp-sub, .env-card-preview .cp-title, .env-card-preview .cp-amp, .env-card-preview .cp-date {
+  opacity: 0.5; transform: translateY(7px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.env-container.open .env-card-preview .cp-sub   { opacity: 1; transform: translateY(0); transition-delay: 1.75s; }
+.env-container.open .env-card-preview .cp-title { opacity: 1; transform: translateY(0); transition-delay: 1.88s; }
+.env-container.open .env-card-preview .cp-amp   { opacity: 1; transform: translateY(0); transition-delay: 2s; }
+.env-container.open .env-card-preview .cp-date  { opacity: 1; transform: translateY(0); transition-delay: 2.12s; }
+
+/* Front panel — the face of the envelope; stays put while the card emerges, then drops away */
+.env-front {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 320px; z-index: 4; overflow: hidden;
+  background: linear-gradient(160deg, #F6F1E5 0%, #EAE2D1 100%);
+  border: 1px solid #E0D9C7; border-radius: 0 0 6px 6px;
+  clip-path: polygon(0 30px, 50% 0, 100% 30px, 100% 100%, 0 100%);
+  box-shadow: inset 0 3px 6px rgba(120,95,55,0.08);
+  transition: transform 0.8s cubic-bezier(0.5,0,0.75,0.5) 1.35s, opacity 0.6s ease 1.55s;
+}
+.env-container.open .env-front { transform: translateY(130px); opacity: 0; }
+.env-front span {  /* the two diagonal fold creases radiating from the peak */
+  position: absolute; top: 0; left: 50%; width: 1px; height: 420px; background: rgba(120,95,55,0.14);
+  transform-origin: top center;
+}
+.ef-l { transform: rotate(-31deg); }
+.ef-r { transform: rotate(31deg); }
+.ef-b { display: none; }
+
+/* Top flap — lifts open (per-element perspective so it never disturbs sibling stacking) */
+.env-flap {
+  position: absolute; top: 90px; left: 0; width: 100%; height: 195px; z-index: 6;
+  transform-origin: top center;
+}
+.env-flap span {
+  position: absolute; top: 0; left: 50%; width: 0; height: 0; border-style: solid;
+  transform: translateX(-50%);
+}
+.env-flap-face  { border-width: 190px 190px 0 190px; border-color: #F2ECDE transparent transparent transparent;
+  filter: drop-shadow(0 8px 10px rgba(10,18,28,0.22)); }
+.env-flap-liner { display: none; }
+.env-container.open .env-flap { animation: flapOpen 0.8s cubic-bezier(0.4,0,0.3,1) forwards; }
+@keyframes flapOpen {
+  0%   { transform: perspective(760px) rotateX(0deg);   opacity: 1; }
+  55%  { transform: perspective(760px) rotateX(80deg);  opacity: 1; }
+  100% { transform: perspective(760px) rotateX(112deg); opacity: 0; }
+}
+
+/* Wax seal — presses in, cracks, and the halves tumble off */
+.env-wax-seal {
+  position: absolute; top: 200px; left: 50%; transform: translateX(-50%); width: 58px; height: 58px;
+  z-index: 8; filter: drop-shadow(0 7px 16px rgba(10,18,28,0.42));
+  transition: transform 0.28s cubic-bezier(0.34,1.6,0.64,1);
+}
+.seal-half {
+  position: absolute; top: 0; height: 100%; width: 52%;
+  background: radial-gradient(circle at 36% 30%, #E9DAC0 0%, var(--gold) 46%, #9C7D48 100%);
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.42), inset 0 -4px 8px rgba(0,0,0,0.28);
+  border: 2px solid #8A6D3E;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.7,0.4), opacity 0.5s ease 0.15s;
+}
+.seal-half--l { left: 0;  border-radius: 29px 0 0 29px; border-right: 0; transform-origin: right center; }
+.seal-half--r { right: 0; border-radius: 0 29px 29px 0; border-left: 0; transform-origin: left center; }
+.seal-mono {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1;
+  color: var(--blue-deep); font-family: 'Pinyon Script', cursive; font-size: 30px; transition: opacity 0.18s ease;
+}
+.env-container.open .env-wax-seal { transform: translateX(-50%) translateY(3px) scale(1.06); }
+.env-container.open .seal-mono { opacity: 0; }
+.env-container.open .seal-half--l { transform: translate(-13px, 26px) rotate(-28deg); opacity: 0; }
+.env-container.open .seal-half--r { transform: translate(13px, 28px) rotate(30deg); opacity: 0; }
+
+.env-cta-hint {
+  color: #FFFFFF; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 25px;
+  padding: 12px 26px; border: 1px solid rgba(255,255,255,0.4); border-radius: 30px;
+  background: rgba(255, 255, 255, 0.08); animation: pulseHint 2s ease-in-out infinite;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+@keyframes pulseHint { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.04); opacity: 1; } }
+.env-container.open ~ .env-cta-hint { animation: none; opacity: 0; transform: translateY(14px); pointer-events: none; }
+
+/* ─── 2. SINGLE CONTINUOUS FLOW ─── */
+#app-content { opacity: 0; transition: opacity 1.2s ease; position: relative; z-index: 10; padding: 6px 0 60px; }
+#app-content.visible { opacity: 1; }
+
+.masthead { text-align: center; max-width: 520px; margin: 0 auto 6px; padding: 20px 24px 0; }
+.blessing { margin-bottom: 10px; }
+.blessing-ar { font-size: 1.15rem; color: var(--ink); }
+.eyebrow { font-family: 'Special Elite', monospace; font-size: 0.64rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue-deep); }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(18px); filter: blur(6px); transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+/* Base section rhythm */
+.flow { max-width: 560px; margin: 0 auto; padding: 46px 24px; text-align: center; position: relative; }
+.flow--tight { padding-top: 20px; padding-bottom: 20px; }
+.flow-divider { width: 130px; height: 14px; color: var(--gold); margin: 0 auto; display: block; }
+.flow-divider-wrap { padding: 22px 0; }
+
+.band { width: 100%; background: var(--paper); }
+.band .flow { padding-top: 44px; padding-bottom: 44px; }
+
+/* Corner florals — top-left / bottom-right, drift-in animation on reveal */
+.corner-floral {
+  position: absolute; width: 92px; height: 78px; pointer-events: none; z-index: 0;
+  object-fit: contain; opacity: 0;
+  transition: opacity 1.2s ease 0.3s, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+.corner-floral--tl { top: -14px; left: -6px; transform: translate(-16px, -14px) rotate(-16deg); }
+.corner-floral--br { bottom: -14px; right: -6px; transform: rotate(180deg) translate(-16px, -14px) rotate(-16deg); }
+.reveal.in-view .corner-floral--tl { opacity: 0.95; transform: translate(0, 0) rotate(0deg); }
+.reveal.in-view .corner-floral--br { opacity: 0.95; transform: rotate(180deg); }
+
+/* Names section */
+.sec-names { padding-top: 30px; }
+.sec-names .tag { font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-bottom: 14px; }
+.sec-names .verse {
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; line-height: 1.65;
+  color: var(--blue-deep); max-width: 320px; margin: 0 auto 20px; position: relative; z-index: 1;
+  padding: 0 22px;
+}
+.sec-names .verse::before, .sec-names .verse::after {
+  font-family: Georgia, 'Playfair Display', serif; font-size: 3rem; font-style: normal;
+  color: var(--gold); position: absolute; line-height: 0; opacity: 0.65;
+}
+.sec-names .verse::before { content: '“'; top: 0.55em; left: -6px; }
+.sec-names .verse::after { content: '”'; bottom: 0.05em; right: -6px; }
+.script-name { font-family: 'Pinyon Script', cursive; font-size: clamp(4.4rem, 18vw, 6.4rem); color: var(--blue-deep); line-height: 1; }
+.monogram-row { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.names-amp { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 1.6rem; color: var(--gold); }
+.sec-names .tagline { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); max-width: 320px; margin: 20px auto 0; line-height: 1.7; }
+
+.hashtag { margin-top: 22px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--rose-deep); }
+
+/* Photos — with parallax */
+.photo-single { width: 100%; max-width: 480px; aspect-ratio: 4/5; border-radius: 18px; overflow: hidden; margin: 0 auto; position: relative; box-shadow: 0 20px 50px rgba(47,76,107,0.16); }
+.photo-single img { width: 100%; height: 118%; object-fit: cover; display: block; filter: contrast(1.05) saturate(0.94); will-change: transform; }
+.photo-cap { margin-top: 16px; font-family: 'Allura', cursive; font-size: 1.7rem; color: var(--blue-deep); }
+
+.photo-wide { width: 100%; max-width: 600px; aspect-ratio: 16/10; border-radius: 18px; overflow: hidden; margin: 0 auto; position: relative; box-shadow: 0 20px 50px rgba(47,76,107,0.16); }
+.photo-wide img { width: 100%; height: 122%; object-fit: cover; display: block; will-change: transform; }
+.photo-wide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,24,36,0.7) 0%, transparent 55%); }
+.photo-wide .cap { position: absolute; left: 0; right: 0; bottom: 16px; z-index: 2; font-family: 'Allura', cursive; font-size: 1.8rem; color: #FFFFFF; }
+
+.photo-pair { display: flex; gap: 16px; max-width: 480px; margin: 0 auto; }
+.photo-pair .ph { flex: 1; aspect-ratio: 1/1; border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 16px 36px rgba(47,76,107,0.14); }
+.photo-pair .ph img { width: 100%; height: 118%; object-fit: cover; display: block; will-change: transform; }
+.photo-pair .ph::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,24,36,0.6) 0%, transparent 55%); }
+.photo-pair .ph span { position: absolute; left: 0; right: 0; bottom: 10px; z-index: 2; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #FFF; }
+
+/* Quote */
+.sec-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; line-height: 1.7; color: var(--ink); max-width: 460px; margin: 0 auto; }
+.sec-quote .mark { color: var(--blue-deep); font-size: 1.8rem; display: block; margin-bottom: 8px; }
+
+/* Date + Venue */
+.date-row { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.date-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.date-day { font-size: clamp(2.6rem, 11vw, 3.6rem); font-weight: 700; color: var(--blue-deep); line-height: 1; }
+.date-label { font-family: 'Special Elite', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; color: var(--muted); }
+.date-sep { width: 1px; height: 48px; background: var(--line); }
+.date-time { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 18px; }
+
+.cal-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.cal-btn {
+  padding: 10px 18px; border: 1px solid var(--blue); border-radius: 30px; color: var(--blue-deep);
+  background: none; font-family: 'Jost', sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 0.3s ease, color 0.3s ease;
+}
+.cal-btn:hover { background: var(--blue-deep); color: #FFFFFF; }
+
+.venue-block { margin-top: 36px; }
+.venue-pin { width: 26px; height: 26px; color: var(--gold); margin-bottom: 10px; }
+.venue-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: clamp(1.3rem, 5vw, 1.6rem); color: var(--ink); }
+.venue-sub { font-family: 'Special Elite', monospace; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); margin-top: 6px; text-transform: uppercase; }
+
+/* Countdown */
+.sec-countdown .head { font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 400; color: var(--blue-deep); margin-bottom: 22px; }
+.cd-row { display: flex; align-items: center; justify-content: center; gap: 22px; }
+.cd-col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cd-num {
+  font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(2.6rem, 11vw, 3.8rem);
+  color: var(--blue-deep); line-height: 1; display: inline-block; transform-origin: center;
+}
+.cd-num.cd-tick { animation: cdTick 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes cdTick {
+  0% { transform: translateY(-14px) scale(0.85); opacity: 0.3; color: var(--gold); }
+  60% { transform: translateY(2px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+.cd-lbl { font-family: 'Special Elite', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+.cd-sep { width: 1px; height: 44px; background: var(--line); }
+
+/* Timeline */
+.sec-timeline .head, .sec-wishes .head, .sec-rsvp .head {
+  font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 400; color: var(--blue-deep); margin-bottom: 20px;
+}
+.tl-list { display: flex; flex-direction: column; gap: 18px; max-width: 380px; margin: 0 auto; text-align: left; }
+.tl-item { display: flex; gap: 18px; align-items: baseline; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.tl-item:last-child { border-bottom: none; padding-bottom: 0; }
+.tl-time { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; color: var(--blue-deep); min-width: 52px; }
+.tl-title { font-weight: 700; font-size: 0.85rem; color: var(--ink); }
+.tl-desc { font-size: 0.74rem; color: var(--muted); margin-top: 2px; }
+
+/* Map — framed card design */
+.map-card {
+  max-width: 480px; margin: 0 auto; background: var(--paper); border-radius: 22px;
+  padding: 26px 22px 28px; box-shadow: 0 20px 50px rgba(47,76,107,0.16); border: 1px solid var(--line);
+  position: relative;
+}
+.map-card-head { text-align: center; margin-bottom: 18px; }
+.map-pin-wrap { position: relative; width: 24px; height: 24px; margin: 0 auto 10px; }
+.map-card-pin { width: 24px; height: 24px; color: var(--blue-deep); display: block; position: relative; z-index: 2; }
+.map-pin-pulse-ring {
+  position: absolute; top: 50%; left: 50%; width: 24px; height: 24px; margin: -12px 0 0 -12px;
+  border-radius: 50%; background: rgba(184, 92, 109, 0.4); pointer-events: none; z-index: 1;
+  animation: mapPinPulse 2.4s ease-out infinite;
+}
+.map-pin-pulse-ring--delay { animation-delay: 1.2s; }
+@keyframes mapPinPulse { 0% { transform: scale(0.6); opacity: 0.75; } 100% { transform: scale(3); opacity: 0; } }
+.map-card-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+.map-card-sub { font-family: 'Special Elite', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+.map-wrap { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+.map-iframe-element { width: 100%; height: 260px; border: 0; display: block; filter: saturate(0.85) contrast(1.02); }
+
+.map-apps { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
+.map-app-btn {
+  padding: 10px 20px; border: 1px solid var(--blue); border-radius: 30px; color: var(--blue-deep);
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.map-app-btn:hover { background: var(--blue-deep); color: #FFFFFF; }
+
+/* Forms — underline style */
+.form-group-flow { margin-bottom: 18px; max-width: 380px; margin-left: auto; margin-right: auto; text-align: left; }
+.form-label-flow { display: block; font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--blue-deep); margin-bottom: 8px; }
+.form-input-flow, .form-textarea-flow {
+  width: 100%; padding: 8px 2px; border: none; border-bottom: 1px solid var(--line);
+  background: transparent; font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--ink); outline: none;
+}
+.form-input-flow::placeholder, .form-textarea-flow::placeholder { color: rgba(47,76,107,0.32); }
+.form-input-flow:focus, .form-textarea-flow:focus { border-bottom-color: var(--blue-deep); }
+.form-textarea-flow { resize: vertical; min-height: 70px; }
+
+.btn-flow-primary {
+  padding: 15px 44px; background: var(--blue-deep); color: #FFFFFF; border: none;
+  border-radius: 40px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.btn-flow-primary:hover { filter: brightness(1.12); }
+
+.wishes-feed-flow { margin-top: 30px; display: flex; flex-direction: column; gap: 16px; max-width: 380px; margin-left: auto; margin-right: auto; text-align: left; max-height: 220px; overflow-y: auto; }
+.wish-item { padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.wish-author { font-weight: 700; font-size: 0.82rem; color: var(--blue-deep); }
+.wish-text { font-size: 0.78rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+/* RSVP */
+.sec-rsvp .sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; }
+.rsvp-buttons-flow { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 380px; margin: 0 auto; }
+.btn-rsvp-yes {
+  flex: 1 1 auto; padding: 15px 20px; background: var(--blue-deep); color: #FFFFFF; border: none;
+  border-radius: 40px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+}
+.btn-rsvp-no {
+  flex: 1 1 auto; padding: 15px 20px; background: transparent; color: var(--ink); border: 1px solid var(--line);
+  border-radius: 40px; font-size: 0.72rem; font-weight: 600; cursor: pointer;
+}
+.rsvp-feedback-msg { margin-top: 4px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--blue-deep); display: none; }
+
+/* CTA */
+.btn-call {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 17px 34px; background: transparent; color: var(--blue-deep); border: 1px solid var(--blue); border-radius: 50px;
+  text-decoration: none; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.btn-call:hover { background: var(--blue-deep); color: #FFFFFF; }
+.footer-note { text-align: center; margin: 40px 0 0; font-family: 'Allura', cursive; font-size: 2.4rem; color: var(--blue-deep); }
+
+/* Save the Date */
+.sec-savedate { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-top: 56px; padding-bottom: 56px; }
+.sd-heading { font-family: 'Allura', cursive; font-size: clamp(2.4rem, 9vw, 3.1rem); color: var(--blue-deep); margin-top: 12px; }
+.sd-month { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 10px 0 26px; }
+
+.sd-grid { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 8px; max-width: 380px; margin: 0 auto; }
+.sd-dow { font-family: 'Special Elite', monospace; font-size: 0.54rem; letter-spacing: 0.03em; text-transform: uppercase; color: var(--blue-deep); font-weight: 400; padding-bottom: 8px; }
+.sd-day { position: relative; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: clamp(0.8rem, 3vw, 0.95rem); color: var(--ink); }
+.sd-day--target { color: var(--rose-deep); font-weight: 700; }
+
+.sd-heart-ring { position: absolute; inset: 10%; pointer-events: none; }
+.sd-heart-ring path {
+  fill: none; stroke: #8B3A46; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 100; stroke-dashoffset: 100;
+}
+.sd-heart-ring .sd-heart-ink2 { stroke-width: 1.9; opacity: 0.45; }
+.sd-day--target.sd-hit .sd-heart-ink1 { animation: sdDrawHeart 0.95s ease-out forwards; }
+.sd-day--target.sd-hit .sd-heart-ink2 { animation: sdDrawHeart 0.95s ease-out 0.18s forwards; }
+@keyframes sdDrawHeart { to { stroke-dashoffset: 0; } }
+.sd-day--target.sd-hit { animation: sdPop 0.85s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes sdPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.4) rotate(-6deg); }
+  70% { transform: scale(0.95) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.sd-flying-heart {
+  position: absolute; top: 0; left: 0; width: 22px; height: 22px; opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4) rotate(0deg); pointer-events: none; z-index: 5;
+  filter: drop-shadow(0 4px 10px rgba(184,92,109,0.55));
+}
+
+.sd-names { font-family: 'Allura', cursive; font-size: 1.9rem; color: var(--blue-deep); margin-top: 30px; }
+.sd-location { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+@media (min-width: 700px) {
+  .flow { padding: 60px 32px; }
+  .sec-savedate { padding-top: 70px; padding-bottom: 70px; }
+}
+
+/* ─── SCROLL-IN FLOURISHES (same spirit as the Save-the-Date heart) ─── */
+
+/* Draw-in dividers */
+.flow-divider line { stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 0.95s ease; }
+.flow-divider .dl-right { stroke-dashoffset: -100; }
+.flow-divider rect { opacity: 0; transition: opacity 0.55s ease 0.45s; }
+.flow-divider-wrap.in-view line { stroke-dashoffset: 0; }
+.flow-divider-wrap.in-view rect { opacity: 1; }
+
+/* Monogram entrance + drawn flourish */
+.monogram-row { position: relative; }
+.script-name { display: inline-block; opacity: 0; transform: translateY(24px) scale(0.82); transition: opacity 0.9s ease, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.reveal.in-view .mono-a { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.12s; }
+.reveal.in-view .mono-n { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.32s; }
+.names-amp { display: inline-block; opacity: 0; transform: scale(0.2) rotate(-35deg); transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.reveal.in-view .names-amp { opacity: 1; transform: scale(1) rotate(0); transition-delay: 0.5s; }
+.mono-flourish { display: block; width: 190px; height: 20px; margin: 10px auto 0; overflow: visible; }
+.mono-flourish path { stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1.3s ease 0.7s; }
+.reveal.in-view .mono-flourish path { stroke-dashoffset: 0; }
+
+/* Flipping date card */
+.date-row { perspective: 700px; }
+.date-day { display: inline-block; opacity: 0; transform: rotateX(-92deg); transform-origin: center bottom; transition: opacity 0.6s ease 0.15s, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s; }
+.reveal.in-view .date-day { opacity: 1; transform: rotateX(0); }
+
+/* Timeline rail draws down, dots pop in sequence */
+.tl-list { position: relative; padding-left: 24px; }
+.tl-track { position: absolute; left: 5px; top: 6px; bottom: 12px; width: 3px; border-radius: 3px; background: linear-gradient(var(--gold), var(--blue)); transform: scaleY(0); transform-origin: top; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s; }
+.reveal.in-view .tl-track { transform: scaleY(1); }
+.tl-item { position: relative; }
+.tl-item::before {
+  content: ''; position: absolute; left: -24px; top: 5px; width: 13px; height: 13px; border-radius: 50%;
+  background: var(--gold); border: 2px solid var(--paper); box-shadow: 0 0 0 1px var(--line);
+  transform: scale(0); transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal.in-view .tl-item:nth-child(2)::before { transform: scale(1); transition-delay: 0.45s; }
+.reveal.in-view .tl-item:nth-child(3)::before { transform: scale(1); transition-delay: 0.7s; }
+.reveal.in-view .tl-item:nth-child(4)::before { transform: scale(1); transition-delay: 0.95s; }
+
+/* Ring photos glide together */
+.photo-pair .ph { opacity: 0; transition: opacity 0.8s ease, transform 0.95s cubic-bezier(0.34, 1.4, 0.64, 1); }
+.photo-pair .ph:first-child { transform: translateX(-38px) rotate(-4deg); }
+.photo-pair .ph:last-child { transform: translateX(38px) rotate(4deg); }
+.reveal.in-view .photo-pair .ph { opacity: 1; transform: translateX(0) rotate(0); }
+
+/* Map pin drops in */
+.map-card-pin { opacity: 0; transform: translateY(-32px); transition: opacity 0.4s ease, transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.reveal.in-view .map-card-pin { opacity: 1; transform: translateY(0); }
+
+/* Scroll progress line */
+#scrollProgress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--gold), var(--rose)); z-index: 9998;
+  pointer-events: none; opacity: 0; transition: opacity 0.6s ease;
+  box-shadow: 0 0 10px rgba(201,168,118,0.6);
+}
+#scrollProgress.on { opacity: 1; }
+
+/* Twinkling ✦ stars in headings */
+.twk { display: inline-block; transform-origin: center; animation: twinkle 3.4s ease-in-out infinite; }
+.twk:nth-of-type(even) { animation-delay: 1.7s; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; transform: scale(0.82) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.18) rotate(90deg); filter: drop-shadow(0 0 5px var(--gold)); }
+}
+
+/* Verse typewriter caret */
+.sec-names .verse.vw-typing::before, .sec-names .verse.vw-typing::after { opacity: 0; }
+
+/* Hero photo light sweep */
+.photo-single::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -70%; width: 45%; z-index: 3;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  transform: skewX(-18deg); pointer-events: none; opacity: 0;
+}
+.reveal.in-view .photo-single::before { animation: heroSheen 1.5s ease-in-out 0.5s 1 forwards; }
+@keyframes heroSheen {
+  0% { left: -70%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 125%; opacity: 0; }
+}
+
+/* RSVP "Yes" success morph */
+.btn-rsvp-yes { position: relative; transition: background 0.3s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.btn-rsvp-yes.rsvp-done { font-size: 0; transform: scale(1.06); pointer-events: none; }
+.btn-rsvp-yes.rsvp-done::after {
+  content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.15rem; font-weight: 700;
+  animation: rsvpCheck 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+}
+@keyframes rsvpCheck { from { transform: scale(0) rotate(-40deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
+
+/* ─── LOADING SCREEN ─── */
+#loader {
+  position: fixed; inset: 0; z-index: 10001;
+  background: linear-gradient(160deg, #F3F8FB, #E4EEF4);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+#loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-mono { font-family: 'Pinyon Script', cursive; font-size: clamp(3.4rem, 14vw, 5rem); color: var(--blue-deep); display: flex; align-items: center; gap: 8px; line-height: 1; }
+.loader-mono span { opacity: 0; transform: translateY(16px); animation: loaderIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.loader-mono span:nth-child(2) { animation-delay: 0.16s; }
+.loader-mono span:nth-child(3) { animation-delay: 0.34s; }
+.loader-amp { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.46em; color: var(--gold); }
+@keyframes loaderIn { to { opacity: 1; transform: translateY(0); } }
+.loader-bar { width: 118px; height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.loader-bar span { display: block; height: 100%; width: 0; background: var(--gold); animation: loaderBar 1.35s ease 0.25s forwards; }
+@keyframes loaderBar { to { width: 100%; } }
+
+/* ─── COUNTDOWN MILESTONE ─── */
+.cd-milestone {
+  margin-top: 20px; font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 0.98rem; color: var(--rose-deep); min-height: 1.3em;
+  opacity: 0; transform: translateY(6px); transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.cd-milestone.show { opacity: 1; transform: translateY(0); }
+
+/* ─── TILT ON PHOTOS (transform driven per-frame by JS; no CSS transition here) ─── */
+.photo-single, .photo-wide { will-change: transform; }
+
+/* ─── VINTAGE COMMEMORATIVE STAMP + BOLD CANCELLATION (near the footer) ─── */
+.sec-postmark { overflow: hidden; }
+.postmark-wrap {
+  position: relative; width: 300px; max-width: 90vw; aspect-ratio: 300 / 300; margin: 12px auto 0;
+  opacity: 0; transform: translateY(16px) rotate(-1.5deg);
+  transition: opacity 1s ease 0.15s, transform 1.1s cubic-bezier(0.16,1,0.3,1) 0.15s;
+}
+.reveal.in-view .postmark-wrap { opacity: 1; transform: translateY(0) rotate(-1.5deg); }
+
+.stamp {
+  --r: 6px; --g: 15.5px;
+  position: absolute; left: 21%; top: 12%; width: 58%; aspect-ratio: 5 / 6; padding: 5%;
+  transform: rotate(-4deg); filter: drop-shadow(0 14px 30px rgba(47,76,107,0.34));
+  background:
+    radial-gradient(var(--r) at 50% 0,    #0000 95%, #FBF6E9) 50% 0    / var(--g) var(--r) repeat-x,
+    radial-gradient(var(--r) at 50% 100%, #0000 95%, #FBF6E9) 50% 100% / var(--g) var(--r) repeat-x,
+    radial-gradient(var(--r) at 0 50%,    #0000 95%, #FBF6E9) 0 50%    / var(--r) var(--g) repeat-y,
+    radial-gradient(var(--r) at 100% 50%, #0000 95%, #FBF6E9) 100% 50% / var(--r) var(--g) repeat-y,
+    radial-gradient(130% 95% at 50% 0%, #FFFDF6, #EEE4CD) 50% 50% / calc(100% - 2*var(--r)) calc(100% - 2*var(--r)) no-repeat;
+}
+.stamp-frame {
+  position: relative; width: 100%; height: 100%;
+  border: 1px solid rgba(150,118,64,0.75);
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,0.55), inset 0 0 0 4px rgba(150,118,64,0.3);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4%;
+  padding: 15% 9% 13%;
+}
+.stamp-frame::before, .stamp-frame::after {
+  content: ''; position: absolute; width: 20px; height: 20px; border: 1.5px solid var(--gold); opacity: 0.7;
+}
+.stamp-frame::before { top: 4px; left: 4px; border-right: 0; border-bottom: 0; }
+.stamp-frame::after  { bottom: 4px; right: 4px; border-left: 0; border-top: 0; }
+.stamp-sprig { width: 56%; max-width: 66px; color: var(--gold); }
+.stamp-mono { font-family: 'Pinyon Script', cursive; font-size: clamp(2.6rem, 12vw, 3.5rem); color: var(--blue-deep); line-height: 0.8; }
+.stamp-mono span { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.4em; color: var(--gold); }
+.stamp-rule { width: 58%; height: 1px; background: linear-gradient(90deg, transparent, rgba(150,118,64,0.7), transparent); }
+.stamp-names { font-family: 'Special Elite', monospace; font-size: 0.5rem; letter-spacing: 2.2px; color: var(--blue-deep); text-transform: uppercase; }
+.stamp-date { font-family: 'Special Elite', monospace; font-size: 0.62rem; letter-spacing: 1.6px; color: var(--muted); }
+.stamp-country {
+  position: absolute; left: 0; right: 0; bottom: 5px; text-align: center;
+  font-family: 'Special Elite', monospace; font-size: 0.42rem; letter-spacing: 2.6px; color: rgba(150,118,64,0.8);
+}
+.stamp-denom { position: absolute; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.9rem; color: var(--blue-deep); opacity: 0.9; }
+.stamp-denom.d-tr { top: 7px; right: 10px; }
+.stamp-denom.d-bl { bottom: 7px; left: 10px; }
+
+.postmark {
+  position: absolute; left: 29%; top: 8%; width: 44%; aspect-ratio: 132 / 140;
+  color: var(--rose-deep); opacity: 0.66; transform: rotate(-15deg); transform-origin: center;
+  z-index: 2;
+}
+.postmark .pm-ink { fill: none; stroke: currentColor; }
+.postmark text { fill: currentColor; stroke: none; font-family: 'Special Elite', monospace; }
+.pm-t { font-size: 7.4px; letter-spacing: 0.5px; }
+.pm-b { font-size: 8px; letter-spacing: 2px; }
+.pm-d { font-size: 15px; letter-spacing: 1.6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .postmark-wrap { opacity: 1 !important; transform: translateY(0) rotate(-1deg) !important; }
+  .loader-mono span { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .loader-bar span { animation: none !important; width: 100% !important; }
+  .cd-milestone { transition: none !important; }
+  .photo-single, .photo-wide { transition: none !important; transform: none !important; }
+  .cd-num.cd-tick { animation: none !important; }
+  .photo-single img, .photo-wide img, .photo-pair .ph img { transform: none !important; }
+  .flow-divider line { stroke-dashoffset: 0 !important; }
+  .flow-divider rect { opacity: 1 !important; }
+  .script-name, .names-amp, .date-day, .photo-pair .ph, .map-card-pin { opacity: 1 !important; transform: none !important; }
+  .mono-flourish path { stroke-dashoffset: 0 !important; }
+  .tl-track { transform: scaleY(1) !important; }
+  .tl-item::before { transform: scale(1) !important; }
+  .twk { animation: none !important; }
+  .photo-single::before { animation: none !important; opacity: 0 !important; }
+  .verse.vw-typing { animation: none !important; }
+  .env-container { animation: none !important; }
+  .env-container.open .env-card-preview { transform: translateY(-280px) !important; }
+  .env-container.open .env-flap { animation: none !important; opacity: 0 !important; }
+  .env-back, .env-front, .env-flap, .seal-half, .env-wax-seal, .env-card-preview, .env-cta-hint {
+    transition-duration: 0.3s !important; transition-delay: 0s !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-mono"><span>A</span><span class="loader-amp">&amp;</span><span>N</span></div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<div class="site-bg"></div>
+<div id="scrollProgress"></div>
+<canvas id="petals-canvas"></canvas>
+<canvas id="confetti-canvas"></canvas>
+<audio id="bgMusic" src="wedding.mp3" loop preload="metadata"></audio>
+<button id="musicToggle" class="music-toggle" aria-label="Musiqa">🔊</button>
+
+<!-- ─── 1. INTERACTIVE GIFT-WRAPPED INVITATION ─── -->
+<div id="envelope-overlay">
+  <div class="env-container" id="envContainer">
+    <div class="env-stage">
+      <div class="env-back"></div>
+
+      <div class="env-card-preview">
+        <div class="grain"></div>
+        <div class="cp-sub" data-i18n="envCardSub">Nikoh To'yi Taklifnomasi</div>
+        <div class="cp-title">A</div>
+        <div class="cp-amp">&amp;</div>
+        <div class="cp-title">N</div>
+        <div class="cp-date">04.10.2026</div>
+      </div>
+
+      <div class="env-front"><span class="ef-l"></span><span class="ef-r"></span><span class="ef-b"></span></div>
+      <div class="env-flap"><span class="env-flap-face"></span></div>
+
+      <div class="env-wax-seal">
+        <span class="seal-half seal-half--l"></span>
+        <span class="seal-half seal-half--r"></span>
+        <span class="seal-mono">A&amp;N</span>
+      </div>
+    </div>
+  </div>
+  <div class="env-cta-hint"><span data-i18n="envHint">Ochish uchun bosing</span> ✦</div>
+</div>
+
+<!-- ─── 2. SINGLE FLOWING INVITATION ─── -->
+<div id="app-content">
+
+  <div id="langSwitch">
+    <button class="lang-btn" data-lang="uz">UZ</button>
+    <button class="lang-btn" data-lang="ru">RU</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+
+  <div class="masthead">
+    <div class="blessing">
+      <p class="blessing-ar">﷽</p>
+    </div>
+    <div class="eyebrow" data-i18n="eyebrow">Nikoh To'yiga Taklif Etamiz</div>
+  </div>
+
+  <!-- Names -->
+  <section class="flow reveal sec-names">
+    <img class="corner-floral corner-floral--tl" src="photos/floral-blue-corner.png" alt=""/>
+    <img class="corner-floral corner-floral--br" src="photos/floral-blue-corner.png" alt=""/>
+    <div class="tag" data-i18n="namesTag">Kelin va Kuyov</div>
+    <p class="verse" data-i18n="verse">Sevgi ikki qalbni bir-biriga bog'lab, ularni abadiy yo'ldosh qiladi</p>
+    <div class="monogram-row">
+      <span class="script-name mono-a">A</span>
+      <span class="names-amp">&amp;</span>
+      <span class="script-name mono-n">N</span>
+    </div>
+    <svg class="mono-flourish" viewBox="0 0 200 20" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <path d="M8 12C38 1 68 1 100 9 132 17 162 17 192 7" pathLength="100"/>
+    </svg>
+    <p class="tagline" data-i18n="tagline">Sizni ushbu maxsus onimizda biz bilan birga bo'lishga taklif etamiz</p>
+    <p class="hashtag">#AN2026</p>
+  </section>
+
+  <!-- Hero Photo -->
+  <section class="flow reveal flow--tight">
+    <div class="photo-single">
+      <img class="parallax-img" src="photos/bouquet-blue-hydrangea-hero.jpg" alt="Kelinning gulchambari"/>
+    </div>
+  </section>
+
+  <!-- Date + Venue band -->
+  <div class="band">
+    <section class="flow reveal sec-date">
+      <div class="date-row">
+        <div class="date-col"><span class="date-label" data-i18n="dateMonth">Oktabr</span></div>
+        <div class="date-sep"></div>
+        <div class="date-col"><span class="date-day display">04</span><span class="date-label" data-i18n="dateWeekday">Yakshanba</span></div>
+        <div class="date-sep"></div>
+        <div class="date-col"><span class="date-label">2026</span></div>
+      </div>
+      <div class="date-time" data-i18n="dateTime">Soat 16:00</div>
+
+      <div class="cal-buttons">
+        <a href="#" id="btnGCal" class="cal-btn" data-i18n="calGoogle">Google Calendar</a>
+        <button id="btnICS" class="cal-btn" data-i18n="calIcs">.ICS Yuklab Olish</button>
+      </div>
+
+      <div class="venue-block">
+        <svg class="venue-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="margin-left:auto;margin-right:auto;display:block;">
+          <path d="M12 21s-7-6.2-7-11.3A7 7 0 0 1 12 2a7 7 0 0 1 7 7.7C19 14.8 12 21 12 21Z"/>
+          <circle cx="12" cy="9.5" r="2.3"/>
+        </svg>
+        <div class="venue-title">Safina To'yxonasi</div>
+        <div class="venue-sub" data-i18n="venueRegion">Andijon viloyati</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Dream Banner -->
+  <section class="flow reveal flow--tight">
+    <div class="photo-wide">
+      <img class="parallax-img" src="photos/ceremony-candlelit-aisle.jpg" alt="Sham yoritilgan marosim yo'lkasi"/>
+      <div class="cap" data-i18n="bannerCap">Ertagimiz shu yerdan boshlanadi...</div>
+    </div>
+  </section>
+
+  <div class="flow-divider-wrap"><svg class="flow-divider" viewBox="0 0 260 24" fill="none" stroke="currentColor"><line class="dl-left" pathLength="100" x1="0" y1="12" x2="105" y2="12" stroke-width="1"/><line class="dl-right" pathLength="100" x1="155" y1="12" x2="260" y2="12" stroke-width="1"/><rect x="126" y="8" width="8" height="8" transform="rotate(45 130 12)" fill="currentColor" stroke="none"/></svg></div>
+
+  <!-- Quote -->
+  <section class="flow reveal sec-quote">
+    <span class="mark">"</span>
+    <p data-i18n="quote">Ikki ko'ngilning abadiy rishtasi va baxtli kelajak ibtidosida siz azizlarni biz bilan birga bo'lishingizdan mamnunmiz.</p>
+  </section>
+
+  <!-- Photo pair -->
+  <section class="flow reveal flow--tight">
+    <div class="photo-pair">
+      <div class="ph"><img class="parallax-img" src="photos/rings-hydrangea.jpg" alt="Nikoh uzuklari va ko'k gullar"/><span data-i18n="capLove">Abadiy sevgi...</span></div>
+      <div class="ph"><img class="parallax-img" src="photos/rings-gold.jpg" alt="Oltin nikoh uzuklari"/><span data-i18n="capRings">Oltin uzuklar...</span></div>
+    </div>
+  </section>
+
+  <!-- Countdown band -->
+  <div class="band">
+    <section class="flow reveal sec-countdown">
+      <div class="head" data-i18n="countdownHead">✦ To'y Boshlanishiga Qolgan Vaqt ✦</div>
+      <div class="cd-row">
+        <div class="cd-col"><span class="cd-num" id="cd-days">00</span><span class="cd-lbl" data-i18n="cdDays">Kun</span></div>
+        <div class="cd-sep"></div>
+        <div class="cd-col"><span class="cd-num" id="cd-hours">00</span><span class="cd-lbl" data-i18n="cdHours">Soat</span></div>
+        <div class="cd-sep"></div>
+        <div class="cd-col"><span class="cd-num" id="cd-mins">00</span><span class="cd-lbl" data-i18n="cdMins">Daqiqa</span></div>
+        <div class="cd-sep"></div>
+        <div class="cd-col"><span class="cd-num" id="cd-secs">00</span><span class="cd-lbl" data-i18n="cdSecs">Soniya</span></div>
+      </div>
+      <div class="cd-milestone" id="cdMilestone"></div>
+    </section>
+  </div>
+
+  <div class="flow-divider-wrap"><svg class="flow-divider" viewBox="0 0 260 24" fill="none" stroke="currentColor"><line class="dl-left" pathLength="100" x1="0" y1="12" x2="105" y2="12" stroke-width="1"/><line class="dl-right" pathLength="100" x1="155" y1="12" x2="260" y2="12" stroke-width="1"/><rect x="126" y="8" width="8" height="8" transform="rotate(45 130 12)" fill="currentColor" stroke="none"/></svg></div>
+
+  <!-- Timeline -->
+  <section class="flow reveal sec-timeline">
+    <div class="head" data-i18n="timelineHead">✦ To'y Dasturi ✦</div>
+    <div class="tl-list">
+      <div class="tl-track"></div>
+      <div class="tl-item"><div class="tl-time">15:00</div><div><div class="tl-title" data-i18n="tl1Title">Mehmonlar Tashrifi</div><div class="tl-desc" data-i18n="tl1Desc">Fayzli davra va kutib olish marosimi</div></div></div>
+      <div class="tl-item"><div class="tl-time">15:30</div><div><div class="tl-title" data-i18n="tl2Title">Kelin-Kuyov Tashrifi</div><div class="tl-desc" data-i18n="tl2Desc">Nikoh marosimi va qutlovlar</div></div></div>
+      <div class="tl-item"><div class="tl-time">16:30</div><div><div class="tl-title" data-i18n="tl3Title">Bayram Ziyofati</div><div class="tl-desc" data-i18n="tl3Desc">San'atkorlar ijrosi va shodiyona</div></div></div>
+    </div>
+  </section>
+
+  <!-- Wishes -->
+  <section class="flow reveal sec-wishes">
+    <div class="head" data-i18n="wishesHead">Dil Izhorlari va Tabriklar</div>
+    <form id="wishForm">
+      <div class="form-group-flow">
+        <label class="form-label-flow" for="wishAuthorInput" data-i18n="labelName">Ismingiz</label>
+        <input type="text" id="wishAuthorInput" class="form-input-flow" data-i18n-ph="wishNamePh" placeholder="Masalan: Sardor va Oilasi" required/>
+      </div>
+      <div class="form-group-flow">
+        <label class="form-label-flow" for="wishTextInput" data-i18n="labelWish">Tabrigingiz va Tilaklaringiz</label>
+        <textarea id="wishTextInput" class="form-textarea-flow" data-i18n-ph="wishTextPh" placeholder="Baxt va saodat hamrohingiz bo'lsin! Qo'sha qaringlar..." required></textarea>
+      </div>
+      <button type="submit" class="btn-flow-primary"><span data-i18n="btnSendWish">Tabrikni Yuborish</span> 💌</button>
+    </form>
+    <div class="wishes-feed-flow" id="wishesFeed">
+      <div class="wish-item">
+        <div class="wish-author" data-i18n="seedAuthor">Oilaviy Do'stlar</div>
+        <div class="wish-text" data-i18n="seedText">Akromjon va Nozima, ikki dunyo saodatini tilaymiz! Qo'sha qaringlar, baxtingizga ko'z tegmasin! 🌸</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="flow reveal sec-rsvp" id="rsvp">
+    <div class="head" data-i18n="rsvpHead">Tashrifingizni Tasdiqlang</div>
+    <div class="sub" data-i18n="rsvpSub">To'yimizda ishtirok etasizmi?</div>
+    <div class="form-group-flow" id="rsvpNameGroup">
+      <label class="form-label-flow" for="rsvpNameInput" data-i18n="labelName">Ismingiz</label>
+      <input type="text" id="rsvpNameInput" class="form-input-flow" data-i18n-ph="rsvpNamePh" placeholder="Ismingizni kiriting" required/>
+    </div>
+    <div class="rsvp-buttons-flow" id="rsvpBtnGroup">
+      <button class="btn-rsvp-yes" id="btnRsvpYes"><span data-i18n="btnYes">Albatta Kelaman!</span> 🎉</button>
+      <button class="btn-rsvp-no" id="btnRsvpNo" data-i18n="btnNo">Afsus, kela olmayman</button>
+    </div>
+    <div class="rsvp-feedback-msg" id="rsvpFeedback"></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="flow reveal">
+    <a href="tel:+998888360011" class="btn-call">📞 <span data-i18n="callBtn">Qo'ng'iroq Qilish</span> (+998 88 836 00 11)</a>
+  </section>
+
+  <!-- ─── SAVE THE DATE ─── -->
+  <section class="flow reveal sec-savedate">
+    <img class="corner-floral corner-floral--tl" src="photos/floral-blue-corner.png" alt=""/>
+    <img class="corner-floral corner-floral--br" src="photos/floral-blue-corner.png" alt=""/>
+
+    <p class="eyebrow" data-i18n="sdEyebrow">✦ Sanani Belgilab Qo'ying ✦</p>
+    <h2 class="sd-heading">Save the Date</h2>
+    <p class="sd-month" data-i18n="sdMonth">Oktabr 2026</p>
+
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#C97D89"/>
+          <stop offset="100%" stop-color="#8B3A46"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="sd-grid">
+      <span class="sd-dow" data-i18n="dow0">Du</span><span class="sd-dow" data-i18n="dow1">Se</span><span class="sd-dow" data-i18n="dow2">Cho</span><span class="sd-dow" data-i18n="dow3">Pay</span><span class="sd-dow" data-i18n="dow4">Ju</span><span class="sd-dow" data-i18n="dow5">Sha</span><span class="sd-dow" data-i18n="dow6">Ya</span>
+      <span class="sd-day empty"></span><span class="sd-day empty"></span><span class="sd-day empty"></span>
+      <span class="sd-day">1</span><span class="sd-day">2</span><span class="sd-day">3</span>
+      <span class="sd-day sd-day--target" id="sdTargetDay">
+        4
+        <svg class="sd-heart-ring" viewBox="0 0 100 100">
+          <path class="sd-heart-ink1" pathLength="100" d="M49 90C32 75 6 54 5 31C4 15 18 4 33 8C41 10 47 17 49 25C54 16 62 8 73 7C88 6 97 19 92 33C87 54 65 75 49 90Z"/>
+          <path class="sd-heart-ink2" pathLength="100" transform="translate(2,1.5) rotate(-3 50 50)" d="M50 89C33 73 8 55 7 32C6 16 19 6 34 10C42 12 47 18 50 26C53 17 61 9 71 8C85 5 96 18 91 32C86 53 66 74 50 89Z"/>
+        </svg>
+      </span>
+      <span class="sd-day">5</span><span class="sd-day">6</span><span class="sd-day">7</span><span class="sd-day">8</span><span class="sd-day">9</span><span class="sd-day">10</span><span class="sd-day">11</span>
+      <span class="sd-day">12</span><span class="sd-day">13</span><span class="sd-day">14</span><span class="sd-day">15</span><span class="sd-day">16</span><span class="sd-day">17</span><span class="sd-day">18</span>
+      <span class="sd-day">19</span><span class="sd-day">20</span><span class="sd-day">21</span><span class="sd-day">22</span><span class="sd-day">23</span><span class="sd-day">24</span><span class="sd-day">25</span>
+      <span class="sd-day">26</span><span class="sd-day">27</span><span class="sd-day">28</span><span class="sd-day">29</span><span class="sd-day">30</span><span class="sd-day">31</span><span class="sd-day empty"></span>
+      <svg class="sd-flying-heart" id="sdFlyingHeart" viewBox="0 0 32 32">
+        <path fill="url(#heartGradient)" d="M16 28C16 28 3 19.5 3 10.8C3 5.9 7 2 11.6 2C14 2 16 3.4 16 3.4C16 3.4 18 2 20.4 2C25 2 29 5.9 29 10.8C29 19.5 16 28 16 28Z"/>
+      </svg>
+    </div>
+
+    <p class="sd-names">A &amp; N</p>
+    <p class="sd-location">Safina To'yxonasi · <span data-i18n="venueRegionShort">Andijon</span></p>
+  </section>
+
+  <div class="flow-divider-wrap"><svg class="flow-divider" viewBox="0 0 260 24" fill="none" stroke="currentColor"><line class="dl-left" pathLength="100" x1="0" y1="12" x2="105" y2="12" stroke-width="1"/><line class="dl-right" pathLength="100" x1="155" y1="12" x2="260" y2="12" stroke-width="1"/><rect x="126" y="8" width="8" height="8" transform="rotate(45 130 12)" fill="currentColor" stroke="none"/></svg></div>
+
+  <!-- Manzil (oxirida) -->
+  <section class="flow reveal sec-map">
+    <p class="eyebrow" data-i18n="mapEyebrow">✦ Bizni Toping ✦</p>
+    <div class="map-card">
+      <div class="map-card-head">
+        <div class="map-pin-wrap">
+          <span class="map-pin-pulse-ring"></span>
+          <span class="map-pin-pulse-ring map-pin-pulse-ring--delay"></span>
+          <svg class="map-card-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M12 21s-7-6.2-7-11.3A7 7 0 0 1 12 2a7 7 0 0 1 7 7.7C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/>
+          </svg>
+        </div>
+        <div class="map-card-title">Safina To'yxonasi</div>
+        <div class="map-card-sub" data-i18n="venueRegion2">Andijon viloyati</div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6227.350069149028!2d72.63533374603418!3d40.7223149423062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bcfdf05c16752f%3A0x7f4d6d6b4ec4887!2zLCwgU0FGSU5BJycgdG_igJh5eG9uYXNp!5e0!3m2!1sru!2s!4v1786968174241!5m2!1sru!2s" class="map-iframe-element" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="map-apps">
+        <a href="https://www.google.com/maps/search/?api=1&query=40.7223149,72.6353337" target="_blank" rel="noopener noreferrer" class="map-app-btn">Google Maps</a>
+        <a href="https://yandex.com/maps/?pt=72.6353337,40.7223149&z=17&l=map" target="_blank" rel="noopener noreferrer" class="map-app-btn">Yandex Maps</a>
+        <a href="geo:40.7223149,72.6353337?q=40.7223149,72.6353337(Safina%20To%27yxonasi)" class="map-app-btn" data-i18n="mapAppOpen">Ilovada Ochish</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow reveal sec-postmark">
+    <div class="postmark-wrap" aria-hidden="true">
+      <div class="stamp">
+        <div class="stamp-frame">
+          <span class="stamp-denom d-tr">&#8734;</span>
+          <span class="stamp-denom d-bl">&#8734;</span>
+          <svg class="stamp-sprig" viewBox="0 0 60 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+            <path d="M4 19C16 16 24 10 30 2M30 2C36 10 44 16 56 19"/>
+            <path d="M13 16c-3-3-2-7 1-10M21 12c-2-4 0-8 3-10M39 12c2-4 0-8-3-10M47 16c3-3 2-7-1-10"/>
+            <circle cx="30" cy="6" r="1.6" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="stamp-mono">A<span>&amp;</span>N</span>
+          <span class="stamp-rule"></span>
+          <span class="stamp-names">Akromjon &amp; Nozima</span>
+          <span class="stamp-date">04 · X · 2026</span>
+          <span class="stamp-country">O'ZBEKISTON · POCHTA</span>
+        </div>
+      </div>
+      <svg class="postmark" viewBox="0 0 132 140">
+        <defs><path id="pmTop" d="M12 62 A 54 54 0 0 1 120 62"/></defs>
+        <g class="pm-ink">
+          <circle cx="66" cy="62" r="48" stroke-width="2.4"/>
+          <circle cx="66" cy="62" r="38" stroke-width="0.9"/>
+          <line x1="28" y1="50" x2="104" y2="50"/>
+          <line x1="28" y1="76" x2="104" y2="76"/>
+        </g>
+        <text class="pm-t" text-anchor="middle"><textPath href="#pmTop" startOffset="50%">SAFINA · TO'YXONASI</textPath></text>
+        <text class="pm-d" x="66" y="69" text-anchor="middle">04·X·2026</text>
+        <text class="pm-b" x="66" y="94" text-anchor="middle">ANDIJON</text>
+      </svg>
+    </div>
+  </section>
+
+  <div class="footer-note"><span data-i18n="footerNote">Tashrifingizdan mamnunmiz!</span> ✦</div>
+
+</div>
+
+<script>
+/* ─── I18N ─── */
+const I18N = {
+  uz: {
+    eyebrow: "Nikoh To'yiga Taklif Etamiz", envHint: "Ochish uchun bosing", envCardSub: "Nikoh To'yi Taklifnomasi",
+    namesTag: "Kelin va Kuyov", verse: "Sevgi ikki qalbni bir-biriga bog'lab, ularni abadiy yo'ldosh qiladi",
+    tagline: "Sizni ushbu maxsus onimizda biz bilan birga bo'lishga taklif etamiz",
+    bannerCap: "Ertagimiz shu yerdan boshlanadi...",
+    quote: "Ikki ko'ngilning abadiy rishtasi va baxtli kelajak ibtidosida siz azizlarni biz bilan birga bo'lishingizdan mamnunmiz.",
+    capLove: "Abadiy sevgi...", capRings: "Oltin uzuklar...",
+    dateMonth: "Oktabr", dateWeekday: "Yakshanba", dateTime: "Soat 15:00",
+    calGoogle: "Google Calendar", calIcs: ".ICS Yuklab Olish",
+    venueRegion: "Andijon viloyati", venueRegion2: "Andijon viloyati", venueRegionShort: "Andijon",
+    countdownHead: "✦ To'y Boshlanishiga Qolgan Vaqt ✦", cdDays: "Kun", cdHours: "Soat", cdMins: "Daqiqa", cdSecs: "Soniya",
+    timelineHead: "✦ To'y Dasturi ✦",
+    tl1Title: "Mehmonlar Tashrifi", tl1Desc: "Fayzli davra va kutib olish marosimi",
+    tl2Title: "Kelin-Kuyov Tashrifi", tl2Desc: "Nikoh marosimi va qutlovlar",
+    tl3Title: "Bayram Ziyofati", tl3Desc: "San'atkorlar ijrosi va shodiyona",
+    wishesHead: "Dil Izhorlari va Tabriklar", labelName: "Ismingiz", wishNamePh: "Masalan: Sardor va Oilasi",
+    labelWish: "Tabrigingiz va Tilaklaringiz", wishTextPh: "Baxt va saodat hamrohingiz bo'lsin! Qo'sha qaringlar...",
+    btnSendWish: "Tabrikni Yuborish",
+    seedAuthor: "Oilaviy Do'stlar", seedText: "Akromjon va Nozima, ikki dunyo saodatini tilaymiz! Qo'sha qaringlar, baxtingizga ko'z tegmasin! 🌸",
+    rsvpHead: "Tashrifingizni Tasdiqlang", rsvpSub: "To'yimizda ishtirok etasizmi?", rsvpNamePh: "Ismingizni kiriting",
+    btnYes: "Albatta Kelaman!", btnNo: "Afsus, kela olmayman",
+    rsvpYesFeedback: "Tashrifingiz uchun tashakkur! Sizni quvonch bilan kutamiz! 🎉🌸",
+    rsvpNoFeedback: "Tushunarli. E'tiboringiz va ezgu tilaklaringiz uchun rahmat! 🌸",
+    callBtn: "Qo'ng'iroq Qilish",
+    sdEyebrow: "✦ Sanani Belgilab Qo'ying ✦", sdMonth: "Oktabr 2026",
+    dow0: "Du", dow1: "Se", dow2: "Cho", dow3: "Pay", dow4: "Ju", dow5: "Sha", dow6: "Ya",
+    mapEyebrow: "✦ Bizni Toping ✦", mapAppOpen: "Ilovada Ochish",
+    footerNote: "Tashrifingizdan mamnunmiz!"
+  },
+  ru: {
+    eyebrow: "Приглашаем на свадьбу", envHint: "Нажмите, чтобы открыть", envCardSub: "Свадебное приглашение",
+    namesTag: "Жених и невеста", verse: "Любовь связывает два сердца, делая их спутниками на всю жизнь",
+    tagline: "Приглашаем вас разделить с нами этот особенный момент",
+    bannerCap: "Наша сказка начинается здесь...",
+    quote: "Мы рады разделить с вами начало вечной связи двух сердец и счастливого будущего.",
+    capLove: "Вечная любовь...", capRings: "Золотые кольца...",
+    dateMonth: "Октябрь", dateWeekday: "Воскресенье", dateTime: "В 15:00",
+    calGoogle: "Google Calendar", calIcs: "Скачать .ICS",
+    venueRegion: "Андижанская область", venueRegion2: "Андижанская область", venueRegionShort: "Андижан",
+    countdownHead: "✦ До начала свадьбы осталось ✦", cdDays: "Дней", cdHours: "Часов", cdMins: "Минут", cdSecs: "Секунд",
+    timelineHead: "✦ Программа торжества ✦",
+    tl1Title: "Встреча гостей", tl1Desc: "Тёплый приём и знакомство",
+    tl2Title: "Прибытие молодожёнов", tl2Desc: "Церемония бракосочетания и поздравления",
+    tl3Title: "Праздничный банкет", tl3Desc: "Выступления артистов и веселье",
+    wishesHead: "Пожелания и поздравления", labelName: "Ваше имя", wishNamePh: "Например: Сардор и семья",
+    labelWish: "Ваше поздравление", wishTextPh: "Желаем счастья и благополучия!",
+    btnSendWish: "Отправить поздравление",
+    seedAuthor: "Семейные друзья", seedText: "Акромжон и Нозима, желаем вам вечного счастья! Пусть любовь всегда будет с вами! 🌸",
+    rsvpHead: "Подтвердите присутствие", rsvpSub: "Будете ли вы на нашей свадьбе?", rsvpNamePh: "Введите ваше имя",
+    btnYes: "Обязательно приду!", btnNo: "К сожалению, не смогу",
+    rsvpYesFeedback: "Спасибо за подтверждение! Мы с радостью ждём встречи с вами! 🎉🌸",
+    rsvpNoFeedback: "Понимаем. Спасибо за внимание и добрые пожелания! 🌸",
+    callBtn: "Позвонить",
+    sdEyebrow: "✦ Сохраните дату ✦", sdMonth: "Октябрь 2026",
+    dow0: "Пн", dow1: "Вт", dow2: "Ср", dow3: "Чт", dow4: "Пт", dow5: "Сб", dow6: "Вс",
+    mapEyebrow: "✦ Найдите нас ✦", mapAppOpen: "Открыть в приложении",
+    footerNote: "Спасибо, что вы с нами!"
+  },
+  en: {
+    eyebrow: "You're Invited to Our Wedding", envHint: "Tap to open", envCardSub: "Wedding Invitation",
+    namesTag: "Bride & Groom", verse: "Love binds two hearts together, making them companions for life",
+    tagline: "We invite you to share this special moment with us",
+    bannerCap: "Our story begins here...",
+    quote: "We are delighted to have you share in the eternal bond of two hearts and the start of a happy future.",
+    capLove: "Eternal love...", capRings: "Golden rings...",
+    dateMonth: "October", dateWeekday: "Sunday", dateTime: "At 3:00 PM",
+    calGoogle: "Google Calendar", calIcs: "Download .ICS",
+    venueRegion: "Andijan Region", venueRegion2: "Andijan Region", venueRegionShort: "Andijan",
+    countdownHead: "✦ Time Until We Say I Do ✦", cdDays: "Days", cdHours: "Hours", cdMins: "Minutes", cdSecs: "Seconds",
+    timelineHead: "✦ Wedding Programme ✦",
+    tl1Title: "Guest Arrival", tl1Desc: "Warm welcome and reception",
+    tl2Title: "Bride & Groom Arrival", tl2Desc: "Marriage ceremony and congratulations",
+    tl3Title: "Celebration Banquet", tl3Desc: "Live performances and festivities",
+    wishesHead: "Wishes & Congratulations", labelName: "Your Name", wishNamePh: "e.g. Sardor & Family",
+    labelWish: "Your Wishes & Blessings", wishTextPh: "Wishing you a lifetime of happiness!",
+    btnSendWish: "Send Wishes",
+    seedAuthor: "Family Friends", seedText: "Akromjon and Nozima, wishing you both endless happiness! May your love last forever! 🌸",
+    rsvpHead: "Confirm Your Attendance", rsvpSub: "Will you join us?", rsvpNamePh: "Enter your name",
+    btnYes: "I'll be there!", btnNo: "Sorry, can't make it",
+    rsvpYesFeedback: "Thank you for confirming! We can't wait to celebrate with you! 🎉🌸",
+    rsvpNoFeedback: "Understood. Thank you for your kind wishes! 🌸",
+    callBtn: "Call Us",
+    sdEyebrow: "✦ Save the Date ✦", sdMonth: "October 2026",
+    dow0: "Mo", dow1: "Tu", dow2: "We", dow3: "Th", dow4: "Fr", dow5: "Sa", dow6: "Su",
+    mapEyebrow: "✦ Find Us ✦", mapAppOpen: "Open in App",
+    footerNote: "Thank you for visiting!"
+  }
+};
+
+let currentLang = localStorage.getItem('wedLang') || 'uz';
+
+function applyLang(lang) {
+  if (!I18N[lang]) return;
+  currentLang = lang;
+  localStorage.setItem('wedLang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.getAttribute('data-i18n');
+    if (I18N[lang][key] !== undefined) el.textContent = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (I18N[lang][key] !== undefined) el.placeholder = I18N[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  wrapTwinkleStars();
+  if (window.__cdDays !== undefined) updateMilestone(window.__cdDays);
+}
+
+/* Wrap every ✦ inside translated headings in a <span> so each can twinkle on its own */
+function wrapTwinkleStars() {
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    if (el.children.length === 0 && el.textContent.indexOf('✦') !== -1) {
+      el.innerHTML = el.textContent.replace(/✦/g, '<span class="twk">✦</span>');
+    }
+  });
+}
+
+document.querySelectorAll('.lang-btn').forEach((btn) => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+applyLang(currentLang);
+
+/* ─── LOADING SCREEN ─── */
+(function() {
+  const loader = document.getElementById('loader');
+  if (!loader) return;
+  const minShow = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 350 : 1600;
+  setTimeout(() => loader.classList.add('done'), minShow);
+  setTimeout(() => { loader.style.display = 'none'; }, minShow + 1100);
+})();
+
+/* ─── BACKGROUND MUSIC ─── */
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+let musicMuted = localStorage.getItem('wedMusicMuted') === 'true';
+bgMusic.muted = musicMuted;
+function updateMusicIcon() {
+  musicToggle.textContent = musicMuted ? '🔇' : '🔊';
+  musicToggle.classList.toggle('muted', musicMuted);
+}
+updateMusicIcon();
+function startMusic() {
+  musicToggle.classList.add('visible');
+  const seekTo15 = () => { try { bgMusic.currentTime = 15; } catch (e) {} };
+  if (bgMusic.readyState >= 1) { seekTo15(); }
+  else { bgMusic.addEventListener('loadedmetadata', seekTo15, { once: true }); }
+  bgMusic.play().catch(() => {});
+}
+musicToggle.addEventListener('click', () => {
+  musicMuted = !musicMuted;
+  bgMusic.muted = musicMuted;
+  localStorage.setItem('wedMusicMuted', musicMuted);
+  updateMusicIcon();
+  if (!musicMuted && bgMusic.paused) { bgMusic.play().catch(() => {}); }
+});
+
+/* ─── ENVELOPE ─── */
+const envOverlay = document.getElementById('envelope-overlay');
+const envContainer = document.getElementById('envContainer');
+const appContent = document.getElementById('app-content');
+
+function triggerOpenEnvelope() {
+  if (envContainer.classList.contains('open')) return;
+  envContainer.classList.add('open');
+  startMusic();
+  const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const seal = envContainer.querySelector('.env-wax-seal');
+  const card = envContainer.querySelector('.env-card-preview');
+  if (!rm) {
+    setTimeout(() => {
+      const r = seal.getBoundingClientRect();
+      fireSparkles(r.left + r.width / 2, r.top + r.height / 2, ['#C9A876', '#E4CE9E', '#FFFFFF']);
+    }, 380);
+    setTimeout(() => {
+      const r = card.getBoundingClientRect();
+      fireSparkles(r.left + r.width / 2, r.top + r.height / 3, ['#C9A876', '#FFFFFF', '#7FA1C4']);
+    }, 2000);
+  }
+  setTimeout(() => {
+    envOverlay.classList.add('opened');
+    appContent.classList.add('visible');
+    document.getElementById('scrollProgress').classList.add('on');
+    initScrollReveal();
+    initSaveDateHeart();
+    initParallax();
+    initTilt();
+  }, rm ? 700 : 2550);
+}
+/* pointerdown fires instantly on tap/click (before the slower synthetic 'click');
+   'open' class is set on the first one to land, so click can't double-fire it */
+envOverlay.addEventListener('pointerdown', triggerOpenEnvelope);
+envOverlay.addEventListener('click', triggerOpenEnvelope);
+envOverlay.setAttribute('role', 'button');
+envOverlay.setAttribute('tabindex', '0');
+envOverlay.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerOpenEnvelope(); }
+});
+
+/* ─── CONFETTI / SPARKLES ─── */
+const confettiCanvas = document.getElementById('confetti-canvas');
+const cCtx = confettiCanvas.getContext('2d');
+let cW = confettiCanvas.width = window.innerWidth;
+let cH = confettiCanvas.height = window.innerHeight;
+window.addEventListener('resize', () => { cW = confettiCanvas.width = window.innerWidth; cH = confettiCanvas.height = window.innerHeight; });
+
+class ConfettiParticle {
+  constructor(x, y) {
+    this.x = x; this.y = y;
+    this.size = Math.random() * 8 + 4;
+    this.vx = (Math.random() - 0.5) * 12;
+    this.vy = (Math.random() - 0.7) * 14;
+    this.gravity = 0.35;
+    this.colors = ['#7FA1C4', '#2F4C6B', '#C9A876', '#FFFFFF', '#D98C9A'];
+    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    this.rotation = Math.random() * Math.PI * 2;
+    this.rotSpeed = (Math.random() - 0.5) * 0.2;
+    this.opacity = 1;
+  }
+  update() { this.x += this.vx; this.y += this.vy; this.vy += this.gravity; this.rotation += this.rotSpeed; this.opacity -= 0.012; }
+  draw() { cCtx.save(); cCtx.globalAlpha = Math.max(0, this.opacity); cCtx.translate(this.x, this.y); cCtx.rotate(this.rotation); cCtx.fillStyle = this.color; cCtx.fillRect(-this.size/2, -this.size/2, this.size, this.size); cCtx.restore(); }
+}
+class SparkleParticle {
+  constructor(x, y, colors) {
+    this.x = x; this.y = y;
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 3.5 + 1;
+    this.vx = Math.cos(angle) * speed; this.vy = Math.sin(angle) * speed - 1;
+    this.gravity = 0.06; this.size = Math.random() * 3 + 1.5;
+    this.colors = colors || ['#C9A876', '#FFFFFF', '#7FA1C4'];
+    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    this.opacity = 1;
+  }
+  update() { this.x += this.vx; this.y += this.vy; this.vy += this.gravity; this.vx *= 0.98; this.opacity -= 0.018; }
+  draw() { cCtx.save(); cCtx.globalAlpha = Math.max(0, this.opacity); cCtx.fillStyle = this.color; cCtx.shadowColor = this.color; cCtx.shadowBlur = 6; cCtx.beginPath(); cCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2); cCtx.fill(); cCtx.restore(); }
+}
+function fireSparkles(x, y, colors) { for (let i = 0; i < 36; i++) { activeConfetti.push(new SparkleParticle(x, y, colors)); } animateConfetti(); }
+
+class HeartParticle {
+  constructor(x, y) {
+    this.x = x; this.y = y;
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 4 + 2;
+    this.vx = Math.cos(angle) * speed; this.vy = Math.sin(angle) * speed - 3;
+    this.gravity = 0.13; this.size = Math.random() * 10 + 9;
+    this.color = ['#D98C9A', '#B85C6D', '#C9A876'][Math.floor(Math.random() * 3)];
+    this.rotation = (Math.random() - 0.5) * 0.8;
+    this.rotSpeed = (Math.random() - 0.5) * 0.14;
+    this.opacity = 1;
+  }
+  update() { this.x += this.vx; this.y += this.vy; this.vy += this.gravity; this.vx *= 0.99; this.rotation += this.rotSpeed; this.opacity -= 0.013; }
+  draw() {
+    cCtx.save();
+    cCtx.globalAlpha = Math.max(0, this.opacity);
+    cCtx.translate(this.x, this.y); cCtx.rotate(this.rotation);
+    const s = this.size / 16;
+    cCtx.scale(s, s);
+    cCtx.fillStyle = this.color;
+    cCtx.beginPath();
+    cCtx.moveTo(0, 4);
+    cCtx.bezierCurveTo(-7, -3, -5, -10, 0, -5);
+    cCtx.bezierCurveTo(5, -10, 7, -3, 0, 4);
+    cCtx.fill();
+    cCtx.restore();
+  }
+}
+function fireHearts(x, y) { for (let i = 0; i < 20; i++) { activeConfetti.push(new HeartParticle(x, y)); } animateConfetti(); }
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function sparkleAtEl(el, colors) {
+  if (reduceMotion || !el) return;
+  const r = el.getBoundingClientRect();
+  if (r.bottom < 0 || r.top > window.innerHeight) return;
+  fireSparkles(r.left + r.width / 2, r.top + r.height / 2, colors);
+}
+
+let activeConfetti = [];
+function fireConfetti() {
+  const startX = window.innerWidth / 2; const startY = window.innerHeight * 0.6;
+  for (let i = 0; i < 90; i++) { activeConfetti.push(new ConfettiParticle(startX, startY)); }
+  animateConfetti();
+}
+function animateConfetti() {
+  cCtx.clearRect(0, 0, cW, cH);
+  activeConfetti.forEach(p => p.update());
+  activeConfetti = activeConfetti.filter(p => p.opacity > 0);
+  activeConfetti.forEach(p => p.draw());
+  if (activeConfetti.length > 0) requestAnimationFrame(animateConfetti);
+}
+
+/* ─── RSVP + TELEGRAM ─── */
+const btnRsvpYes = document.getElementById('btnRsvpYes');
+const btnRsvpNo = document.getElementById('btnRsvpNo');
+const rsvpFeedback = document.getElementById('rsvpFeedback');
+const rsvpBtnGroup = document.getElementById('rsvpBtnGroup');
+const rsvpNameGroup = document.getElementById('rsvpNameGroup');
+const rsvpNameInput = document.getElementById('rsvpNameInput');
+
+const TELEGRAM_BOT_TOKEN = '7960961152:AAF7ATKmd_xAWYn_jYC61QBd4EC7VXcBMwo';
+const TELEGRAM_CHAT_ID = '830173198';
+function sendToTelegram(text) {
+  return fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text })
+  }).catch((err) => console.error('Telegramga xabar yuborilmadi:', err));
+}
+
+btnRsvpYes.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const name = rsvpNameInput.value.trim();
+  if (!name) { rsvpNameInput.focus(); return; }
+  const r = btnRsvpYes.getBoundingClientRect();
+  fireHearts(r.left + r.width / 2, r.top + r.height / 2);
+  fireConfetti();
+  btnRsvpYes.classList.add('rsvp-done');
+  sendToTelegram(`🎉 "${name}" — to'yga albatta keladi!`);
+  setTimeout(() => {
+    rsvpNameGroup.style.display = 'none'; rsvpBtnGroup.style.display = 'none';
+    rsvpFeedback.style.display = 'block';
+    rsvpFeedback.textContent = I18N[currentLang].rsvpYesFeedback;
+  }, 850);
+});
+btnRsvpNo.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const name = rsvpNameInput.value.trim();
+  if (!name) { rsvpNameInput.focus(); return; }
+  sendToTelegram(`😔 "${name}" — afsuski, kela olmaydi.`);
+  rsvpNameGroup.style.display = 'none'; rsvpBtnGroup.style.display = 'none';
+  rsvpFeedback.style.display = 'block';
+  rsvpFeedback.textContent = I18N[currentLang].rsvpNoFeedback;
+});
+
+/* ─── WISHES ─── */
+const wishForm = document.getElementById('wishForm');
+const wishAuthorInput = document.getElementById('wishAuthorInput');
+const wishTextInput = document.getElementById('wishTextInput');
+const wishesFeed = document.getElementById('wishesFeed');
+wishForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const author = wishAuthorInput.value.trim();
+  const text = wishTextInput.value.trim();
+  if (author && text) {
+    fireConfetti();
+    sendToTelegram(`💌 Yangi tabrik!\n\n👤 ${author}:\n${text}`);
+    const newItem = document.createElement('div');
+    newItem.className = 'wish-item';
+    newItem.innerHTML = `<div class="wish-author">${escapeHtml(author)}</div><div class="wish-text">${escapeHtml(text)}</div>`;
+    wishesFeed.prepend(newItem);
+    wishAuthorInput.value = ''; wishTextInput.value = '';
+  }
+});
+function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
+
+/* ─── ADD TO CALENDAR ─── */
+const WEDDING_START = '20261004T150000';
+const WEDDING_END = '20261004T220000';
+document.getElementById('btnGCal').addEventListener('click', (e) => {
+  e.preventDefault();
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: "Akromjon & Nozima - Nikoh To'yi",
+    dates: `${WEDDING_START}/${WEDDING_END}`,
+    details: "Nikoh to'yi marosimi",
+    location: "Safina To'yxonasi, Andijon"
+  });
+  window.open(`https://calendar.google.com/calendar/render?${params.toString()}`, '_blank');
+});
+document.getElementById('btnICS').addEventListener('click', () => {
+  const content = [
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Akromjon Nozima Wedding//EN', 'BEGIN:VEVENT',
+    `DTSTART:${WEDDING_START}`, `DTEND:${WEDDING_END}`, "SUMMARY:Akromjon & Nozima - Nikoh To'yi",
+    "LOCATION:Safina To'yxonasi, Andijon", "DESCRIPTION:Nikoh to'yi marosimi", 'END:VEVENT', 'END:VCALENDAR'
+  ].join('\n');
+  const blob = new Blob([content], { type: 'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'akromjon-nozima-wedding.ics'; a.click();
+  URL.revokeObjectURL(url);
+});
+
+/* ─── COUNTDOWN WITH TICK ANIMATION ─── */
+function setDigit(id, value) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = String(Math.max(0, Math.floor(value))).padStart(2, '0');
+  if (el.textContent === text) return;
+  el.textContent = text;
+  el.classList.remove('cd-tick');
+  void el.offsetWidth;
+  el.classList.add('cd-tick');
+}
+function updateTimer() {
+  const targetDate = new Date('2026-10-04T15:00:00');
+  const diff = targetDate - new Date();
+  const days = diff > 0 ? Math.floor(diff / 86400000) : (diff <= 0 ? -1 : 0);
+  window.__cdDays = days;
+  updateMilestone(days);
+  if (window.__cdIntro) return;
+  if (diff <= 0) { setDigit('cd-days', 0); setDigit('cd-hours', 0); setDigit('cd-mins', 0); setDigit('cd-secs', 0); return; }
+  setDigit('cd-days', Math.floor(diff / 86400000));
+  setDigit('cd-hours', Math.floor((diff % 86400000) / 3600000));
+  setDigit('cd-mins', Math.floor((diff % 3600000) / 60000));
+  setDigit('cd-secs', Math.floor((diff % 60000) / 1000));
+}
+
+/* Friendly line under the countdown */
+const MILE = {
+  uz: { far: "Sizni sabrsizlik bilan kutmoqdamiz", month: "Bir oydan kam qoldi!", week: "Bir haftadan kam qoldi!", tomorrow: "Ertaga — katta kun!", today: "Bugun — katta kun! 🎉", done: "Biz turmush qurdik 🤍" },
+  ru: { far: "Мы с нетерпением вас ждём", month: "Осталось меньше месяца!", week: "Осталась всего неделя!", tomorrow: "Завтра — важный день!", today: "Сегодня — важный день! 🎉", done: "Мы поженились 🤍" },
+  en: { far: "We can't wait to see you", month: "Less than a month to go!", week: "Just a week to go!", tomorrow: "Tomorrow is the big day!", today: "Today is the big day! 🎉", done: "We got married 🤍" }
+};
+function updateMilestone(days) {
+  const el = document.getElementById('cdMilestone');
+  if (!el) return;
+  const M = MILE[currentLang] || MILE.uz;
+  const txt = days < 0 ? M.done : days === 0 ? M.today : days === 1 ? M.tomorrow : days <= 7 ? M.week : days <= 30 ? M.month : M.far;
+  if (el.textContent !== txt) el.textContent = txt;
+  el.classList.add('show');
+}
+updateTimer();
+setInterval(updateTimer, 1000);
+
+/* Countdown "roll into place" the first time the section scrolls into view */
+function animateCountdownIn() {
+  if (window.__cdIntroDone) return;
+  window.__cdIntroDone = true;
+  if (reduceMotion) return;
+  const ids = ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'];
+  const targets = ids.map((id) => parseInt(document.getElementById(id).textContent, 10) || 0);
+  window.__cdIntro = true;
+  const dur = 1200, start = performance.now();
+  function frame(now) {
+    const p = Math.min(1, ((now || performance.now()) - start) / dur);
+    const e = 1 - Math.pow(1 - p, 3);
+    ids.forEach((id, i) => {
+      document.getElementById(id).textContent = String(Math.round(targets[i] * e)).padStart(2, '0');
+    });
+    if (p < 1) { requestAnimationFrame(frame); }
+    else {
+      window.__cdIntro = false;
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        el.classList.remove('cd-tick'); void el.offsetWidth; el.classList.add('cd-tick');
+      });
+      updateTimer();
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ─── FLOATING PETALS ─── */
+(function() {
+  const canvas = document.getElementById('petals-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  class Petal {
+    constructor() { this.reset(true); }
+    reset(init = false) {
+      this.x = Math.random() * w; this.y = init ? Math.random() * h : h + 14;
+      this.leaf = Math.random() < 0.5;
+      this.r = this.leaf ? (Math.random() * 5 + 5) : (Math.random() * 3.5 + 2);
+      this.speedY = Math.random() * 0.4 + 0.13;
+      this.opacity = Math.random() * 0.3 + 0.22;
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotSpeed = (Math.random() - 0.5) * 0.02;
+      this.sway = Math.random() * 0.5 + 0.2;
+      this.swayOffset = Math.random() * 1000;
+      const colors = ['rgba(127, 161, 196, ', 'rgba(201, 168, 118, ', 'rgba(217, 140, 154, ', 'rgba(133, 153, 117, '];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+    update() {
+      this.y -= this.speedY;
+      this.x += Math.sin((this.y + this.swayOffset) * 0.01) * this.sway;
+      this.rotation += this.rotSpeed;
+      if (this.y < -14) this.reset();
+    }
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.fillStyle = this.color + this.opacity + ')';
+      if (this.leaf) {
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.shadowColor = this.color + '0.55)'; ctx.shadowBlur = this.r * 0.9;
+        const outerR = this.r, innerR = this.r * 0.32;
+        ctx.beginPath();
+        for (let i = 0; i < 8; i++) {
+          const radius = i % 2 === 0 ? outerR : innerR;
+          const angle = (Math.PI / 4) * i - Math.PI / 2;
+          const px = Math.cos(angle) * radius, py = Math.sin(angle) * radius;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+  const petals = Array.from({ length: 32 }, () => new Petal());
+  function loop() { ctx.clearRect(0, 0, w, h); petals.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(loop); }
+  loop();
+})();
+
+/* ─── SCROLL REVEAL ─── */
+function initScrollReveal() {
+  if (window.__revealInit) return;
+  window.__revealInit = true;
+  const items = document.querySelectorAll('.reveal, .flow-divider-wrap');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add('in-view');
+      observer.unobserve(el);
+      const amp = el.querySelector('.monogram-row .names-amp');
+      if (amp) setTimeout(() => sparkleAtEl(amp, ['#C9A876', '#FFFFFF', '#7FA1C4']), 950);
+      const pair = el.querySelector('.photo-pair');
+      if (pair) setTimeout(() => sparkleAtEl(pair, ['#C9A876', '#FFFFFF', '#D98C9A']), 720);
+      if (el.classList.contains('sec-countdown')) animateCountdownIn();
+      if (el.querySelector('.verse')) typewriteVerse();
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  items.forEach((el) => observer.observe(el));
+}
+
+/* ─── SUBTLE TILT ON PHOTOS (mouse on desktop, gyro on Android) ─── */
+function initTilt() {
+  if (window.__tiltInit || reduceMotion) return;
+  window.__tiltInit = true;
+  const cards = document.querySelectorAll('.photo-single, .photo-wide');
+  if (!cards.length) return;
+  let rx = 0, ry = 0, tx = 0, ty = 0, running = false;
+  function frame() {
+    rx += (tx - rx) * 0.08; ry += (ty - ry) * 0.08;
+    cards.forEach((c) => { c.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)'; });
+    if (Math.abs(tx - rx) > 0.01 || Math.abs(ty - ry) > 0.01) { requestAnimationFrame(frame); } else { running = false; }
+  }
+  function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
+  if (window.matchMedia('(pointer: fine)').matches) {
+    window.addEventListener('mousemove', (e) => {
+      tx = ((e.clientY / window.innerHeight) - 0.5) * -4.5;
+      ty = ((e.clientX / window.innerWidth) - 0.5) * 4.5;
+      kick();
+    });
+  } else if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') {
+    window.addEventListener('deviceorientation', (e) => {
+      if (e.gamma == null) return;
+      tx = Math.max(-5, Math.min(5, (e.beta - 45) * 0.12));
+      ty = Math.max(-5, Math.min(5, e.gamma * 0.12));
+      kick();
+    });
+  }
+}
+
+/* ─── CURSOR PETAL TRAIL (desktop) ─── */
+class TrailPetal {
+  constructor(x, y) {
+    this.x = x + (Math.random() - 0.5) * 14; this.y = y + (Math.random() - 0.5) * 14;
+    this.vx = (Math.random() - 0.5) * 0.9; this.vy = Math.random() * 0.7 + 0.35;
+    this.size = Math.random() * 4 + 3;
+    this.rotation = Math.random() * Math.PI * 2; this.rotSpeed = (Math.random() - 0.5) * 0.12;
+    this.opacity = 0.7;
+    this.color = ['rgba(127,161,196,', 'rgba(201,168,118,', 'rgba(217,140,154,'][Math.floor(Math.random() * 3)];
+  }
+  update() { this.x += this.vx; this.y += this.vy; this.vy += 0.02; this.rotation += this.rotSpeed; this.opacity -= 0.022; }
+  draw() {
+    cCtx.save();
+    cCtx.globalAlpha = Math.max(0, this.opacity);
+    cCtx.translate(this.x, this.y); cCtx.rotate(this.rotation);
+    cCtx.fillStyle = this.color + Math.max(0, this.opacity).toFixed(2) + ')';
+    cCtx.beginPath(); cCtx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2); cCtx.fill();
+    cCtx.restore();
+  }
+}
+(function() {
+  if (reduceMotion || !window.matchMedia('(pointer: fine)').matches) return;
+  let last = 0;
+  window.addEventListener('mousemove', (e) => {
+    const now = performance.now();
+    if (now - last < 95) return;
+    last = now;
+    activeConfetti.push(new TrailPetal(e.clientX, e.clientY));
+    animateConfetti();
+  });
+})();
+
+/* Verse types itself out the first time the names section appears */
+function typewriteVerse() {
+  const el = document.querySelector('.sec-names .verse');
+  if (!el || window.__verseTyped) return;
+  window.__verseTyped = true;
+  if (reduceMotion) return;
+  const full = el.textContent;
+  el.style.minHeight = el.getBoundingClientRect().height + 'px';
+  el.textContent = '';
+  el.classList.add('vw-typing');
+  const dur = Math.min(2600, full.length * 34), start = performance.now();
+  (function frame(now) {
+    const p = Math.min(1, ((now || performance.now()) - start) / dur);
+    el.textContent = full.slice(0, Math.round(full.length * p));
+    if (p < 1) { requestAnimationFrame(frame); }
+    else { el.classList.remove('vw-typing'); el.style.minHeight = ''; el.textContent = full; }
+  })(performance.now());
+}
+
+/* Scroll progress bar */
+(function() {
+  const bar = document.getElementById('scrollProgress');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* ─── SCROLL PARALLAX ON PHOTOS ─── */
+function initParallax() {
+  if (window.__parallaxInit) return;
+  window.__parallaxInit = true;
+  const imgs = document.querySelectorAll('.parallax-img');
+  if (!imgs.length) return;
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+    imgs.forEach((img) => {
+      const rect = img.parentElement.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const progress = Math.max(-1, Math.min(1, (center - vh / 2) / vh));
+      img.style.transform = `translateY(${progress * -22}px) scale(1.12)`;
+    });
+  }
+  update();
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+}
+
+/* ─── SAVE-THE-DATE HEART: FLIES IN AND LANDS ON THE 4TH ─── */
+function initSaveDateHeart() {
+  const section = document.querySelector('.sec-savedate');
+  const grid = document.querySelector('.sd-grid');
+  const target = document.getElementById('sdTargetDay');
+  const heart = document.getElementById('sdFlyingHeart');
+  if (!section || !grid || !target || !heart) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setTimeout(flyHeartToDate, 400);
+      } else {
+        /* reset so the animation can replay next time this section scrolls into view */
+        target.classList.remove('sd-hit');
+        heart.style.transition = 'none';
+        heart.style.opacity = '0';
+      }
+    });
+  }, { threshold: 0.4 });
+  observer.observe(section);
+  function flyHeartToDate() {
+    target.classList.remove('sd-hit');
+    const gridRect = grid.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const startX = gridRect.width / 2; const startY = -18;
+    const endX = targetRect.left - gridRect.left + targetRect.width / 2;
+    const endY = targetRect.top - gridRect.top + targetRect.height / 2;
+    heart.style.left = startX + 'px'; heart.style.top = startY + 'px';
+    heart.style.transition = 'none'; heart.style.opacity = '1';
+    heart.style.transform = 'translate(-50%, -50%) scale(0.5) rotate(-25deg)';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        heart.style.transition = 'left 1.75s cubic-bezier(0.34, 1.56, 0.64, 1), top 1.75s cubic-bezier(0.34, 1.56, 0.64, 1), transform 1.75s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        heart.style.left = endX + 'px'; heart.style.top = endY + 'px';
+        heart.style.transform = 'translate(-50%, -50%) scale(1.15) rotate(10deg)';
+      });
+    });
+    setTimeout(() => {
+      heart.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      heart.style.opacity = '0';
+      heart.style.transform = 'translate(-50%, -50%) scale(1.6) rotate(10deg)';
+      target.classList.add('sd-hit');
+      const tr = target.getBoundingClientRect();
+      fireSparkles(tr.left + tr.width / 2, tr.top + tr.height / 2, ['#8B3A46', '#C97D89', '#FFFFFF']);
+    }, 1800);
+  }
+}
+
+</script>
+
+</body>
+</html>
