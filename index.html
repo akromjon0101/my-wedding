@@ -159,6 +159,13 @@ body {
   transition: transform 0.95s cubic-bezier(0.42,0,0.26,1); }
 .env-container.open .ef-flap { transform: perspective(720px) rotateX(-150deg); }
 
+/* The pocket's own fold-crease lines only make sense while the flap sits flat on top of
+   them — as the flap rotates open it foreshortens and no longer covers them, so the static
+   crease would peek out from under it as a mismatched second "V". Fade them out the moment
+   opening starts so nothing but the (correctly animating) flap itself is ever visible there. */
+.ef-crease { transition: opacity 0.25s ease; }
+.env-container.open .ef-crease { opacity: 0; }
+
 /* dark inside of the envelope mouth, revealed as the flap lifts */
 .env-mouth { opacity: 0; transition: opacity 0.55s ease 0.3s; }
 .env-container.open .env-mouth { opacity: 1; }
@@ -740,9 +747,9 @@ body {
 
       <path class="ef-pocket" d="M4 4 L194 163 Q200 170 206 163 L396 4 L396 297 Q396 306 387 306 L13 306 Q4 306 4 297 Z"
             fill="url(#gFront)"/>
-      <path d="M6 7 L197 166 Q200 169 203 166 L394 7" fill="none" stroke="#3C2C15" stroke-opacity="0.13"
+      <path class="ef-crease" d="M6 7 L197 166 Q200 169 203 166 L394 7" fill="none" stroke="#3C2C15" stroke-opacity="0.13"
             stroke-width="3.6" stroke-linecap="round" style="filter: blur(2.4px)"/>
-      <path d="M6 6 L198 165 Q200 167 202 165 L394 6" fill="none" stroke="#4A3A20" stroke-opacity="0.10"
+      <path class="ef-crease" d="M6 6 L198 165 Q200 167 202 165 L394 6" fill="none" stroke="#4A3A20" stroke-opacity="0.10"
             stroke-width="1" stroke-linecap="round"/>
 
       <g transform="translate(200,166)">
