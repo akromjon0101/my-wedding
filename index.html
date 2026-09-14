@@ -217,6 +217,19 @@ body {
 
 /* Names section */
 .sec-names { padding-top: 30px; }
+.guest-greet { margin-bottom: 18px; }
+.guest-greet[hidden] { display: none; }
+.gg-label {
+  display: block; font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+}
+.gg-name {
+  display: inline-block; font-family: 'Pinyon Script', cursive; color: var(--gold); line-height: 1;
+  font-size: clamp(2.3rem, 10vw, 3.6rem);
+  opacity: 0; transform: translateY(16px) scale(0.85); filter: blur(5px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1s ease;
+}
+.guest-greet.gg-in .gg-name { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 .sec-names .tag { font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-bottom: 14px; }
 .sec-names .verse {
   font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; line-height: 1.65;
@@ -451,6 +464,18 @@ body {
 .tl-list { position: relative; padding-left: 24px; }
 .tl-track { position: absolute; left: 5px; top: 6px; bottom: 12px; width: 3px; border-radius: 3px; background: linear-gradient(var(--gold), var(--blue)); transform: scaleY(0); transform-origin: top; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s; }
 .reveal.in-view .tl-track { transform: scaleY(1); }
+.tl-spark {
+  position: absolute; left: 2px; top: 6px; width: 9px; height: 9px; border-radius: 50%;
+  background: radial-gradient(circle, #fff9e6, var(--gold) 70%); box-shadow: 0 0 10px 3px rgba(212, 175, 110, 0.65);
+  opacity: 0; pointer-events: none; z-index: 1;
+}
+.reveal.in-view .tl-spark { animation: tlSparkMove 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards; }
+@keyframes tlSparkMove {
+  0% { top: 6px; opacity: 0; }
+  8% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: calc(100% - 12px); opacity: 0; }
+}
 .tl-item { position: relative; }
 .tl-item::before {
   content: ''; position: absolute; left: -24px; top: 5px; width: 13px; height: 13px; border-radius: 50%;
@@ -618,6 +643,8 @@ body {
   .twk { animation: none !important; }
   .photo-single::before { animation: none !important; opacity: 0 !important; }
   .verse.vw-typing { animation: none !important; }
+  .gg-name { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .tl-spark { display: none !important; }
   .env-container { animation: none !important; }
   .env-container.open .env-card { transform: translateY(-158px) !important; }
   .env-container.open .ef-flap { transform: rotateX(0) !important; }
@@ -727,6 +754,10 @@ body {
   <section class="flow reveal sec-names">
     <img class="corner-floral corner-floral--tl" src="photos/floral-blue-corner.png" alt=""/>
     <img class="corner-floral corner-floral--br" src="photos/floral-blue-corner.png" alt=""/>
+    <div class="guest-greet" id="guestGreet" hidden>
+      <span class="gg-label" data-i18n="guestGreetLabel">Xush kelibsiz,</span>
+      <span class="gg-name" id="guestGreetName"></span>
+    </div>
     <div class="tag" data-i18n="namesTag">Kelin va Kuyov</div>
     <p class="verse" data-i18n="verse">Sevgi ikki qalbni bir-biriga bog'lab, ularni abadiy yo'ldosh qiladi</p>
     <div class="monogram-row">
@@ -823,7 +854,7 @@ body {
   <section class="flow reveal sec-timeline">
     <div class="head" data-i18n="timelineHead">✦ To'y Dasturi ✦</div>
     <div class="tl-list">
-      <div class="tl-track"></div>
+      <div class="tl-track"></div><span class="tl-spark" aria-hidden="true"></span>
       <div class="tl-item"><div class="tl-time">15:00</div><div><div class="tl-title" data-i18n="tl1Title">Mehmonlar Tashrifi</div><div class="tl-desc" data-i18n="tl1Desc">Fayzli davra va kutib olish marosimi</div></div></div>
       <div class="tl-item"><div class="tl-time">15:30</div><div><div class="tl-title" data-i18n="tl2Title">Kelin-Kuyov Tashrifi</div><div class="tl-desc" data-i18n="tl2Desc">Nikoh marosimi va qutlovlar</div></div></div>
       <div class="tl-item"><div class="tl-time">16:30</div><div><div class="tl-title" data-i18n="tl3Title">Bayram Ziyofati</div><div class="tl-desc" data-i18n="tl3Desc">San'atkorlar ijrosi va shodiyona</div></div></div>
@@ -985,6 +1016,7 @@ const I18N = {
   uz: {
     eyebrow: "Nikoh To'yiga Taklif Etamiz", envHint: "Ochish uchun bosing", envCardSub: "Nikoh To'yi Taklifnomasi",
     namesTag: "Kelin va Kuyov", verse: "Sevgi ikki qalbni bir-biriga bog'lab, ularni abadiy yo'ldosh qiladi",
+    guestGreetLabel: "Xush kelibsiz,",
     tagline: "Sizni ushbu maxsus onimizda biz bilan birga bo'lishga taklif etamiz",
     bannerCap: "Ertagimiz shu yerdan boshlanadi...",
     quote: "Ikki ko'ngilning abadiy rishtasi va baxtli kelajak ibtidosida siz azizlarni biz bilan birga bo'lishingizdan mamnunmiz.",
@@ -1014,6 +1046,7 @@ const I18N = {
   ru: {
     eyebrow: "Приглашаем на свадьбу", envHint: "Нажмите, чтобы открыть", envCardSub: "Свадебное приглашение",
     namesTag: "Жених и невеста", verse: "Любовь связывает два сердца, делая их спутниками на всю жизнь",
+    guestGreetLabel: "Добро пожаловать,",
     tagline: "Приглашаем вас разделить с нами этот особенный момент",
     bannerCap: "Наша сказка начинается здесь...",
     quote: "Мы рады разделить с вами начало вечной связи двух сердец и счастливого будущего.",
@@ -1043,6 +1076,7 @@ const I18N = {
   en: {
     eyebrow: "You're Invited to Our Wedding", envHint: "Tap to open", envCardSub: "Wedding Invitation",
     namesTag: "Bride & Groom", verse: "Love binds two hearts together, making them companions for life",
+    guestGreetLabel: "Welcome,",
     tagline: "We invite you to share this special moment with us",
     bannerCap: "Our story begins here...",
     quote: "We are delighted to have you share in the eternal bond of two hearts and the start of a happy future.",
@@ -1177,6 +1211,7 @@ function triggerOpenEnvelope() {
     initSaveDateHeart();
     initParallax();
     initTilt();
+    initGuestGreeting();
   }, rm ? 650 : 2850);
 }
 /* pointerdown fires instantly on tap/click (before the slower synthetic 'click');
@@ -1600,6 +1635,31 @@ function typewriteVerse() {
     if (p < 1) { requestAnimationFrame(frame); }
     else { el.classList.remove('vw-typing'); el.style.minHeight = ''; el.textContent = full; }
   })(performance.now());
+}
+
+/* Personalised greeting — only shown when the invite link carries ?ism= or ?name=.
+   The name itself is rendered big (script font) so it visibly reads as "this
+   invitation is addressed to you", with a gold sparkle burst once it lands. */
+function initGuestGreeting() {
+  if (window.__guestGreetInit) return;
+  window.__guestGreetInit = true;
+  const params = new URLSearchParams(location.search);
+  const raw = (params.get('ism') || params.get('name') || '').trim();
+  if (!raw) return;
+  window.__guestName = raw.slice(0, 40);
+  const wrap = document.getElementById('guestGreet');
+  const nameEl = document.getElementById('guestGreetName');
+  if (!wrap || !nameEl) return;
+  nameEl.textContent = window.__guestName;
+  wrap.hidden = false;
+  if (reduceMotion) { wrap.classList.add('gg-in'); return; }
+  requestAnimationFrame(() => {
+    wrap.classList.add('gg-in');
+    setTimeout(() => {
+      const r = nameEl.getBoundingClientRect();
+      fireSparkles(r.left + r.width / 2, r.top + r.height / 2, ['#C9A876', '#E4CE9E', '#FFFFFF']);
+    }, 550);
+  });
 }
 
 /* Scroll progress bar */
