@@ -242,6 +242,9 @@ body {
 }
 .sec-names .verse::before { content: '“'; top: 0.55em; left: -6px; }
 .sec-names .verse::after { content: '”'; bottom: 0.05em; right: -6px; }
+.verse-ink-line { display: block; width: 130px; height: 8px; margin: 6px auto 0; }
+.verse-ink-line path { stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 0.8s cubic-bezier(0.45, 0, 0.4, 1); }
+.verse-ink-line.draw path { stroke-dashoffset: 0; }
 .script-name { font-family: 'Pinyon Script', cursive; font-size: clamp(4.4rem, 18vw, 6.4rem); color: var(--blue-deep); line-height: 1; }
 .monogram-row { display: flex; align-items: center; justify-content: center; gap: 16px; }
 .names-amp { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 1.6rem; color: var(--gold); }
@@ -390,6 +393,14 @@ body {
   border-radius: 40px; font-size: 0.72rem; font-weight: 600; cursor: pointer;
 }
 .rsvp-feedback-msg { margin-top: 4px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--blue-deep); display: none; }
+.rsvp-seal {
+  display: none; justify-content: center; margin-bottom: 8px;
+  opacity: 0; transform: translateY(-26px) scale(1.7) rotate(-10deg);
+  transition: opacity 0.3s ease, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 6px 10px rgba(47, 76, 107, 0.28));
+}
+.rsvp-seal.show { opacity: 1; transform: translateY(0) scale(1) rotate(-6deg); }
+.rsvp-seal-mono { font-family: 'Pinyon Script', cursive; font-size: 19px; fill: #2F4C6B; }
 
 /* CTA */
 .btn-call {
@@ -656,6 +667,8 @@ body {
   .gg-name { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
   .scroll-cue svg { animation: none !important; }
   .wish-item.wish-item-new { animation: none !important; }
+  .rsvp-seal { transition: none !important; }
+  .verse-ink-line path { stroke-dashoffset: 0 !important; transition: none !important; }
   .tl-spark { display: none !important; }
   .env-container { animation: none !important; }
   .env-container.open .env-card { transform: translateY(-158px) !important; }
@@ -772,6 +785,9 @@ body {
     </div>
     <div class="tag" data-i18n="namesTag">Kelin va Kuyov</div>
     <p class="verse" data-i18n="verse">Sevgi ikki qalbni bir-biriga bog'lab, ularni abadiy yo'ldosh qiladi</p>
+    <svg class="verse-ink-line" id="verseInkLine" viewBox="0 0 220 10" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+      <path d="M6 6C50 2 100 8 160 4 190 2 205 5 214 3" pathLength="100"/>
+    </svg>
     <div class="monogram-row">
       <span class="script-name mono-a">A</span>
       <span class="names-amp">&amp;</span>
@@ -910,7 +926,22 @@ body {
       <button class="btn-rsvp-yes" id="btnRsvpYes"><span data-i18n="btnYes">Albatta Kelaman!</span> 🎉</button>
       <button class="btn-rsvp-no" id="btnRsvpNo" data-i18n="btnNo">Afsus, kela olmayman</button>
     </div>
-    <div class="rsvp-feedback-msg" id="rsvpFeedback"></div>
+    <div class="rsvp-feedback-msg" id="rsvpFeedback">
+      <div class="rsvp-seal" id="rsvpSeal" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="46" height="46">
+          <defs>
+            <radialGradient id="gWaxRsvp" cx="0.36" cy="0.3" r="0.85">
+              <stop offset="0" stop-color="#EAD7AE"/><stop offset="0.45" stop-color="#C9A876"/><stop offset="1" stop-color="#89693C"/>
+            </radialGradient>
+          </defs>
+          <circle cx="24" cy="24" r="20" fill="url(#gWaxRsvp)" stroke="#7C5E38" stroke-width="1.4"/>
+          <circle cx="24" cy="24" r="15.5" fill="none" stroke="#000" stroke-opacity="0.15" stroke-width="1.4"/>
+          <circle cx="24" cy="24" r="20" fill="none" stroke="#fff" stroke-opacity="0.32" stroke-width="1"/>
+          <text class="rsvp-seal-mono" x="24" y="25" text-anchor="middle">A&amp;N</text>
+        </svg>
+      </div>
+      <span id="rsvpFeedbackText"></span>
+    </div>
   </section>
 
   <!-- CTA -->
@@ -1258,9 +1289,33 @@ class ConfettiParticle {
     this.rotation = Math.random() * Math.PI * 2;
     this.rotSpeed = (Math.random() - 0.5) * 0.2;
     this.opacity = 1;
+    this.shape = ['square', 'ring', 'diamond', 'petal'][Math.floor(Math.random() * 4)];
   }
   update() { this.x += this.vx; this.y += this.vy; this.vy += this.gravity; this.rotation += this.rotSpeed; this.opacity -= 0.012; }
-  draw() { cCtx.save(); cCtx.globalAlpha = Math.max(0, this.opacity); cCtx.translate(this.x, this.y); cCtx.rotate(this.rotation); cCtx.fillStyle = this.color; cCtx.fillRect(-this.size/2, -this.size/2, this.size, this.size); cCtx.restore(); }
+  draw() {
+    cCtx.save();
+    cCtx.globalAlpha = Math.max(0, this.opacity);
+    cCtx.translate(this.x, this.y); cCtx.rotate(this.rotation);
+    cCtx.fillStyle = this.color; cCtx.strokeStyle = this.color;
+    const s = this.size;
+    switch (this.shape) {
+      case 'ring':
+        cCtx.lineWidth = Math.max(1.3, s * 0.22);
+        cCtx.beginPath(); cCtx.arc(0, 0, s / 2, 0, Math.PI * 2); cCtx.stroke();
+        break;
+      case 'diamond':
+        cCtx.beginPath();
+        cCtx.moveTo(0, -s / 2); cCtx.lineTo(s / 2.6, 0); cCtx.lineTo(0, s / 2); cCtx.lineTo(-s / 2.6, 0);
+        cCtx.closePath(); cCtx.fill();
+        break;
+      case 'petal':
+        cCtx.beginPath(); cCtx.ellipse(0, 0, s / 2, s / 3.2, 0, 0, Math.PI * 2); cCtx.fill();
+        break;
+      default:
+        cCtx.fillRect(-s / 2, -s / 2, s, s);
+    }
+    cCtx.restore();
+  }
 }
 class SparkleParticle {
   constructor(x, y, colors) {
@@ -1334,6 +1389,8 @@ function animateConfetti() {
 const btnRsvpYes = document.getElementById('btnRsvpYes');
 const btnRsvpNo = document.getElementById('btnRsvpNo');
 const rsvpFeedback = document.getElementById('rsvpFeedback');
+const rsvpFeedbackText = document.getElementById('rsvpFeedbackText');
+const rsvpSeal = document.getElementById('rsvpSeal');
 const rsvpBtnGroup = document.getElementById('rsvpBtnGroup');
 const rsvpNameGroup = document.getElementById('rsvpNameGroup');
 const rsvpNameInput = document.getElementById('rsvpNameInput');
@@ -1359,7 +1416,11 @@ btnRsvpYes.addEventListener('click', (e) => {
   setTimeout(() => {
     rsvpNameGroup.style.display = 'none'; rsvpBtnGroup.style.display = 'none';
     rsvpFeedback.style.display = 'block';
-    rsvpFeedback.textContent = I18N[currentLang].rsvpYesFeedback;
+    rsvpFeedbackText.textContent = I18N[currentLang].rsvpYesFeedback;
+    /* seal the reply, like a letter sent back */
+    rsvpSeal.style.display = 'flex';
+    void rsvpSeal.offsetWidth;
+    rsvpSeal.classList.add('show');
   }, 850);
 });
 btnRsvpNo.addEventListener('click', (e) => {
@@ -1369,7 +1430,7 @@ btnRsvpNo.addEventListener('click', (e) => {
   sendToTelegram(`😔 "${name}" — afsuski, kela olmaydi.`);
   rsvpNameGroup.style.display = 'none'; rsvpBtnGroup.style.display = 'none';
   rsvpFeedback.style.display = 'block';
-  rsvpFeedback.textContent = I18N[currentLang].rsvpNoFeedback;
+  rsvpFeedbackText.textContent = I18N[currentLang].rsvpNoFeedback;
 });
 
 /* ─── WISHES ─── */
@@ -1648,7 +1709,11 @@ function typewriteVerse() {
     const p = Math.min(1, ((now || performance.now()) - start) / dur);
     el.textContent = full.slice(0, Math.round(full.length * p));
     if (p < 1) { requestAnimationFrame(frame); }
-    else { el.classList.remove('vw-typing'); el.style.minHeight = ''; el.textContent = full; }
+    else {
+      el.classList.remove('vw-typing'); el.style.minHeight = ''; el.textContent = full;
+      const line = document.getElementById('verseInkLine');
+      if (line) line.classList.add('draw');
+    }
   })(performance.now());
 }
 
