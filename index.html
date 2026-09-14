@@ -248,6 +248,10 @@ body {
 .sec-names .tagline { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); max-width: 320px; margin: 20px auto 0; line-height: 1.7; }
 
 .hashtag { margin-top: 22px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--rose-deep); }
+.scroll-cue { margin-top: 32px; display: flex; justify-content: center; opacity: 0.7; transition: opacity 0.7s ease; }
+.scroll-cue svg { animation: scrollCueBounce 1.7s ease-in-out infinite; }
+@keyframes scrollCueBounce { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(6px); opacity: 1; } }
+.scroll-cue.hide { opacity: 0; }
 
 /* Photos — with parallax */
 .photo-single { width: 100%; max-width: 480px; aspect-ratio: 4/5; border-radius: 18px; overflow: hidden; margin: 0 auto; position: relative; box-shadow: 0 20px 50px rgba(47,76,107,0.16); }
@@ -367,7 +371,10 @@ body {
 .btn-flow-primary:hover { filter: brightness(1.12); }
 
 .wishes-feed-flow { margin-top: 30px; display: flex; flex-direction: column; gap: 16px; max-width: 380px; margin-left: auto; margin-right: auto; text-align: left; max-height: 220px; overflow-y: auto; }
-.wish-item { padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.wish-item { padding-bottom: 16px; border-bottom: 1px solid var(--line); border-radius: 6px; }
+@keyframes wishIn { 0% { opacity: 0; transform: translateY(-8px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes wishGlow { 0% { box-shadow: 0 0 0 6px rgba(201, 168, 118, 0.22); } 100% { box-shadow: 0 0 0 6px rgba(201, 168, 118, 0); } }
+.wish-item.wish-item-new { animation: wishIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both, wishGlow 1.6s ease-out both; }
 .wish-author { font-weight: 700; font-size: 0.82rem; color: var(--blue-deep); }
 .wish-text { font-size: 0.78rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
 
@@ -617,9 +624,11 @@ body {
 
 .postmark {
   position: absolute; left: 29%; top: 8%; width: 44%; aspect-ratio: 132 / 140;
-  color: var(--rose-deep); opacity: 0.66; transform: rotate(-15deg); transform-origin: center;
+  color: var(--rose-deep); opacity: 0; transform: rotate(-15deg) scale(1.9); transform-origin: center;
   z-index: 2;
+  transition: opacity 0.3s ease 0.95s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.95s;
 }
+.reveal.in-view .postmark { opacity: 0.66; transform: rotate(-15deg) scale(1); }
 .postmark .pm-ink { fill: none; stroke: currentColor; }
 .postmark text { fill: currentColor; stroke: none; font-family: 'Special Elite', monospace; }
 .pm-t { font-size: 7.4px; letter-spacing: 0.5px; }
@@ -628,6 +637,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .postmark-wrap { opacity: 1 !important; transform: translateY(0) rotate(-1deg) !important; }
+  .postmark { opacity: 0.66 !important; transform: rotate(-15deg) scale(1) !important; transition: none !important; }
   .loader-mono span { animation: none !important; opacity: 1 !important; transform: none !important; }
   .loader-bar span { animation: none !important; width: 100% !important; }
   .cd-milestone { transition: none !important; }
@@ -644,6 +654,8 @@ body {
   .photo-single::before { animation: none !important; opacity: 0 !important; }
   .verse.vw-typing { animation: none !important; }
   .gg-name { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .scroll-cue svg { animation: none !important; }
+  .wish-item.wish-item-new { animation: none !important; }
   .tl-spark { display: none !important; }
   .env-container { animation: none !important; }
   .env-container.open .env-card { transform: translateY(-158px) !important; }
@@ -770,6 +782,9 @@ body {
     </svg>
     <p class="tagline" data-i18n="tagline">Sizni ushbu maxsus onimizda biz bilan birga bo'lishga taklif etamiz</p>
     <p class="hashtag">#AN2026</p>
+    <div class="scroll-cue" id="scrollCue" aria-hidden="true">
+      <svg viewBox="0 0 20 12" width="18" height="11" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 10,10 19,1"/></svg>
+    </div>
   </section>
 
   <!-- Hero Photo -->
@@ -1370,7 +1385,7 @@ wishForm.addEventListener('submit', (e) => {
     fireConfetti();
     sendToTelegram(`💌 Yangi tabrik!\n\n👤 ${author}:\n${text}`);
     const newItem = document.createElement('div');
-    newItem.className = 'wish-item';
+    newItem.className = 'wish-item' + (reduceMotion ? '' : ' wish-item-new');
     newItem.innerHTML = `<div class="wish-author">${escapeHtml(author)}</div><div class="wish-text">${escapeHtml(text)}</div>`;
     wishesFeed.prepend(newItem);
     wishAuthorInput.value = ''; wishTextInput.value = '';
@@ -1674,6 +1689,19 @@ function initGuestGreeting() {
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   window.addEventListener('resize', update);
   update();
+})();
+
+/* Scroll-down cue on the hero — fades out the first time the guest scrolls */
+(function() {
+  const cue = document.getElementById('scrollCue');
+  if (!cue) return;
+  function onScroll() {
+    if (window.scrollY > 40) {
+      cue.classList.add('hide');
+      window.removeEventListener('scroll', onScroll);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
 })();
 
 /* ─── SCROLL PARALLAX ON PHOTOS ─── */
