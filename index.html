@@ -84,6 +84,15 @@ body {
 }
 .music-toggle.visible { opacity: 1; pointer-events: auto; transform: scale(1); }
 .music-toggle.muted { color: var(--muted); }
+.mt-eq { display: flex; align-items: flex-end; gap: 3px; height: 15px; }
+.mt-eq span { width: 3px; background: currentColor; border-radius: 2px; height: 100%; transform: scaleY(0.4); transform-origin: bottom; animation: eqBar 0.9s ease-in-out infinite; }
+.mt-eq span:nth-child(1) { animation-delay: -0.6s; }
+.mt-eq span:nth-child(2) { animation-delay: -0.3s; }
+.mt-eq span:nth-child(3) { animation-delay: 0s; }
+@keyframes eqBar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+.mt-muted-icon { display: none; font-size: 1.05rem; }
+.music-toggle.muted .mt-eq { display: none; }
+.music-toggle.muted .mt-muted-icon { display: block; }
 
 /* ─── 1. INTERACTIVE ENVELOPE OVERLAY ─── */
 #envelope-overlay {
@@ -363,8 +372,9 @@ body {
 .map-app-btn:hover { background: var(--blue-deep); color: #FFFFFF; }
 
 /* Forms — underline style */
-.form-group-flow { margin-bottom: 18px; max-width: 380px; margin-left: auto; margin-right: auto; text-align: left; }
-.form-label-flow { display: block; font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--blue-deep); margin-bottom: 8px; }
+.form-group-flow { position: relative; margin-bottom: 18px; max-width: 380px; margin-left: auto; margin-right: auto; text-align: left; }
+.form-label-flow { display: block; font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--blue-deep); margin-bottom: 8px; transition: color 0.3s ease; }
+.form-group-flow:focus-within .form-label-flow { color: var(--gold); }
 .form-input-flow, .form-textarea-flow {
   width: 100%; padding: 8px 2px; border: none; border-bottom: 1px solid var(--line);
   background: transparent; font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--ink); outline: none;
@@ -372,6 +382,12 @@ body {
 .form-input-flow::placeholder, .form-textarea-flow::placeholder { color: rgba(47,76,107,0.32); }
 .form-input-flow:focus, .form-textarea-flow:focus { border-bottom-color: var(--blue-deep); }
 .form-textarea-flow { resize: vertical; min-height: 70px; }
+.fld-line {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  pointer-events: none;
+}
+.form-group-flow:focus-within .fld-line { transform: scaleX(1); }
 
 .btn-flow-primary {
   padding: 15px 44px; background: var(--blue-deep); color: #FFFFFF; border: none;
@@ -418,6 +434,8 @@ body {
 }
 .btn-call:hover { background: var(--blue-deep); color: #FFFFFF; }
 .footer-note { text-align: center; margin: 40px 0 0; font-family: 'Allura', cursive; font-size: 2.4rem; color: var(--blue-deep); }
+.closing-mono { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 56px 0 0; font-family: 'Pinyon Script', cursive; font-size: 2.2rem; color: var(--blue-deep); }
+.closing-mono .cm-amp { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--gold); }
 
 /* Save the Date */
 .sec-savedate { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-top: 56px; padding-bottom: 56px; }
@@ -590,6 +608,8 @@ body {
   opacity: 0; transform: translateY(6px); transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .cd-milestone.show { opacity: 1; transform: translateY(0); }
+.cd-milestone.cd-milestone-today { color: var(--gold); font-size: 1.15rem; font-weight: 600; animation: milestoneGlow 2.4s ease-in-out infinite; }
+@keyframes milestoneGlow { 0%, 100% { text-shadow: 0 0 0 rgba(201, 168, 118, 0); } 50% { text-shadow: 0 0 14px rgba(201, 168, 118, 0.55); } }
 
 /* ─── TILT ON PHOTOS (transform driven per-frame by JS; no CSS transition here) ─── */
 .photo-single, .photo-wide { will-change: transform; }
@@ -659,6 +679,7 @@ body {
   .loader-mono span { animation: none !important; opacity: 1 !important; transform: none !important; }
   .loader-bar span { animation: none !important; width: 100% !important; }
   .cd-milestone { transition: none !important; }
+  .cd-milestone.cd-milestone-today { animation: none !important; }
   .photo-single, .photo-wide { transition: none !important; transform: none !important; }
   .cd-num.cd-tick { animation: none !important; }
   .photo-single img, .photo-wide img, .photo-pair .ph img { transform: none !important; }
@@ -676,6 +697,7 @@ body {
   .wish-item.wish-item-new { animation: none !important; }
   .rsvp-seal { transition: none !important; }
   .verse-ink-line path { stroke-dashoffset: 0 !important; transition: none !important; }
+  .mt-eq span { animation: none !important; transform: scaleY(0.7) !important; }
   .tl-spark { display: none !important; }
   .env-container { animation: none !important; }
   .env-container.open .env-card { transform: translateY(-158px) !important; }
@@ -698,7 +720,10 @@ body {
 <canvas id="petals-canvas"></canvas>
 <canvas id="confetti-canvas"></canvas>
 <audio id="bgMusic" src="wedding.mp3" loop preload="metadata"></audio>
-<button id="musicToggle" class="music-toggle" aria-label="Musiqa">🔊</button>
+<button id="musicToggle" class="music-toggle" aria-label="Musiqa">
+  <span class="mt-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+  <span class="mt-muted-icon" aria-hidden="true">🔇</span>
+</button>
 
 <!-- ─── 1. INTERACTIVE GIFT-WRAPPED INVITATION ─── -->
 <div id="envelope-overlay">
@@ -906,10 +931,12 @@ body {
       <div class="form-group-flow">
         <label class="form-label-flow" for="wishAuthorInput" data-i18n="labelName">Ismingiz</label>
         <input type="text" id="wishAuthorInput" class="form-input-flow" data-i18n-ph="wishNamePh" placeholder="Masalan: Sardor va Oilasi" required/>
+        <span class="fld-line" aria-hidden="true"></span>
       </div>
       <div class="form-group-flow">
         <label class="form-label-flow" for="wishTextInput" data-i18n="labelWish">Tabrigingiz va Tilaklaringiz</label>
         <textarea id="wishTextInput" class="form-textarea-flow" data-i18n-ph="wishTextPh" placeholder="Baxt va saodat hamrohingiz bo'lsin! Qo'sha qaringlar..." required></textarea>
+        <span class="fld-line" aria-hidden="true"></span>
       </div>
       <button type="submit" class="btn-flow-primary"><span data-i18n="btnSendWish">Tabrikni Yuborish</span> 💌</button>
     </form>
@@ -928,6 +955,7 @@ body {
     <div class="form-group-flow" id="rsvpNameGroup">
       <label class="form-label-flow" for="rsvpNameInput" data-i18n="labelName">Ismingiz</label>
       <input type="text" id="rsvpNameInput" class="form-input-flow" data-i18n-ph="rsvpNamePh" placeholder="Ismingizni kiriting" required/>
+      <span class="fld-line" aria-hidden="true"></span>
     </div>
     <div class="rsvp-buttons-flow" id="rsvpBtnGroup">
       <button class="btn-rsvp-yes" id="btnRsvpYes"><span data-i18n="btnYes">Albatta Kelaman!</span> 🎉</button>
@@ -1059,6 +1087,9 @@ body {
     </div>
   </section>
 
+  <div class="closing-mono reveal" aria-hidden="true">
+    <span class="cm-letter">A</span><span class="cm-amp">&amp;</span><span class="cm-letter">N</span>
+  </div>
   <div class="footer-note"><span data-i18n="footerNote">Tashrifingizdan mamnunmiz!</span> ✦</div>
 
 </div>
@@ -1209,7 +1240,6 @@ const musicToggle = document.getElementById('musicToggle');
 let musicMuted = localStorage.getItem('wedMusicMuted') === 'true';
 bgMusic.muted = musicMuted;
 function updateMusicIcon() {
-  musicToggle.textContent = musicMuted ? '🔇' : '🔊';
   musicToggle.classList.toggle('muted', musicMuted);
 }
 updateMusicIcon();
@@ -1526,6 +1556,17 @@ function updateMilestone(days) {
   const txt = days < 0 ? M.done : days === 0 ? M.today : days === 1 ? M.tomorrow : days <= 7 ? M.week : days <= 30 ? M.month : M.far;
   if (el.textContent !== txt) el.textContent = txt;
   el.classList.add('show');
+  el.classList.toggle('cd-milestone-today', days === 0);
+  if (days === 0) triggerWeddingDayCelebration();
+}
+
+/* One-time confetti burst if a guest opens the site on the wedding day itself */
+function triggerWeddingDayCelebration() {
+  if (window.__weddingDayCelebrated) return;
+  window.__weddingDayCelebrated = true;
+  if (reduceMotion) return;
+  fireConfetti();
+  setTimeout(fireConfetti, 450);
 }
 updateTimer();
 setInterval(updateTimer, 1000);
