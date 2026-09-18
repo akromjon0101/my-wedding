@@ -259,10 +259,9 @@ body {
 }
 .gg-msg {
   display: block; font-family: 'Special Elite', monospace; font-size: 0.7rem; letter-spacing: 0.02em;
-  color: var(--muted); margin-top: 10px; max-width: 260px; margin-left: auto; margin-right: auto;
+  color: var(--muted); margin: 10px auto 0; width: fit-content; max-width: 260px;
   opacity: 0; transition: opacity 0.3s ease;
 }
-.guest-greet.gg-in .gg-msg { opacity: 1; }
 .gg-msg.gg-typing::after {
   content: ''; display: inline-block; width: 2px; height: 0.9em; margin-left: 2px;
   background: var(--gold); vertical-align: -0.1em; animation: ggCaretBlink 0.8s steps(1) infinite;
