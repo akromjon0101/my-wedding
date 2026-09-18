@@ -6,12 +6,15 @@
 <title>Akromjon & Nozima — Nikoh To'yi Taklifnomasi</title>
 <meta name="description" content="Akromjon va Nozimaning nikoh to'yi taklifnomasi. 4-Oktabr 2026, Safina to'yxonasi, Andijon."/>
 <meta name="theme-color" content="#2F4C6B"/>
+<link rel="canonical" href="https://an-wedding.uz/"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%8D%3C/text%3E%3C/svg%3E"/>
 <meta property="og:type" content="website"/>
+<meta property="og:url" content="https://an-wedding.uz/"/>
 <meta property="og:title" content="Akromjon & Nozima — Nikoh To'yi Taklifnomasi"/>
 <meta property="og:description" content="Bizni to'yimizda ko'rishdan mamnun bo'lamiz! 4-Oktabr 2026, Safina To'yxonasi, Andijon."/>
-<meta property="og:image" content="photos/bouquet-blue-hydrangea-hero.jpg"/>
+<meta property="og:image" content="https://an-wedding.uz/photos/bouquet-blue-hydrangea-hero.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:url" content="https://an-wedding.uz/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Allura&family=Pinyon+Script&family=Special+Elite&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -240,12 +243,24 @@ body {
   text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
 }
 .gg-name {
-  display: inline-block; font-family: 'Pinyon Script', cursive; color: var(--gold); line-height: 1;
+  display: inline-block; font-family: 'Pinyon Script', cursive; line-height: 1;
   font-size: clamp(2.3rem, 10vw, 3.6rem);
+  background: linear-gradient(135deg, #E28A9C 0%, var(--gold) 55%, #E28A9C 100%);
+  -webkit-background-clip: text; background-clip: text; color: #D9829A; -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 22px rgba(226, 138, 156, 0.4);
   opacity: 0; transform: translateY(16px) scale(0.85); filter: blur(5px);
   transition: opacity 1s ease, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1s ease;
 }
+@supports not (-webkit-background-clip: text) {
+  .gg-name { color: #D9829A; }
+}
 .guest-greet.gg-in .gg-name { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+.gg-msg {
+  display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.92rem;
+  color: var(--blue-deep); margin-top: 6px; max-width: 280px; margin-left: auto; margin-right: auto;
+  opacity: 0; transform: translateY(8px); transition: opacity 0.9s ease 0.25s, transform 0.9s ease 0.25s;
+}
+.guest-greet.gg-in .gg-msg { opacity: 1; transform: translateY(0); }
 .sec-names .tag { font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-bottom: 14px; }
 .sec-names .verse {
   font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; line-height: 1.65;
@@ -812,8 +827,9 @@ body {
     <img class="corner-floral corner-floral--tl" src="photos/floral-blue-corner.png" alt=""/>
     <img class="corner-floral corner-floral--br" src="photos/floral-blue-corner.png" alt=""/>
     <div class="guest-greet" id="guestGreet" hidden>
-      <span class="gg-label" data-i18n="guestGreetLabel">Xush kelibsiz,</span>
+      <span class="gg-label" data-i18n="guestGreetLabel">Hurmatli,</span>
       <span class="gg-name" id="guestGreetName"></span>
+      <span class="gg-msg" data-i18n="guestGreetMsg">Sizni to'y kunimizda ko'rishdan xursand bo'lamiz!</span>
     </div>
     <div class="tag" data-i18n="namesTag">Kelin va Kuyov</div>
     <p class="verse" data-i18n="verse">Sevgi ikki qalbni bir-biriga bog'lab, ularni abadiy yo'ldosh qiladi</p>
@@ -1100,7 +1116,8 @@ const I18N = {
   uz: {
     eyebrow: "Nikoh To'yiga Taklif Etamiz", envHint: "Ochish uchun bosing", envCardSub: "Nikoh To'yi Taklifnomasi",
     namesTag: "Kelin va Kuyov", verse: "Sevgi ikki qalbni bir-biriga bog'lab, ularni abadiy yo'ldosh qiladi",
-    guestGreetLabel: "Xush kelibsiz,",
+    guestGreetLabel: "Hurmatli,",
+    guestGreetMsg: "Sizni to'y kunimizda ko'rishdan xursand bo'lamiz!",
     tagline: "Sizni ushbu maxsus onimizda biz bilan birga bo'lishga taklif etamiz",
     bannerCap: "Ertagimiz shu yerdan boshlanadi...",
     quote: "Ikki ko'ngilning abadiy rishtasi va baxtli kelajak ibtidosida siz azizlarni biz bilan birga bo'lishingizdan mamnunmiz.",
@@ -1130,7 +1147,8 @@ const I18N = {
   ru: {
     eyebrow: "Приглашаем на свадьбу", envHint: "Нажмите, чтобы открыть", envCardSub: "Свадебное приглашение",
     namesTag: "Жених и невеста", verse: "Любовь связывает два сердца, делая их спутниками на всю жизнь",
-    guestGreetLabel: "Добро пожаловать,",
+    guestGreetLabel: "Дорогой(ая),",
+    guestGreetMsg: "Будем рады видеть вас в день нашей свадьбы!",
     tagline: "Приглашаем вас разделить с нами этот особенный момент",
     bannerCap: "Наша сказка начинается здесь...",
     quote: "Мы рады разделить с вами начало вечной связи двух сердец и счастливого будущего.",
@@ -1160,7 +1178,8 @@ const I18N = {
   en: {
     eyebrow: "You're Invited to Our Wedding", envHint: "Tap to open", envCardSub: "Wedding Invitation",
     namesTag: "Bride & Groom", verse: "Love binds two hearts together, making them companions for life",
-    guestGreetLabel: "Welcome,",
+    guestGreetLabel: "Dear,",
+    guestGreetMsg: "We'd be delighted to see you on our wedding day!",
     tagline: "We invite you to share this special moment with us",
     bannerCap: "Our story begins here...",
     quote: "We are delighted to have you share in the eternal bond of two hearts and the start of a happy future.",
