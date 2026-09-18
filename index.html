@@ -241,19 +241,25 @@ body {
 .gg-label {
   display: block; font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.26em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  opacity: 0; transform: translateY(6px); transition: opacity 0.7s ease, transform 0.7s ease;
 }
+.guest-greet.gg-in .gg-label { opacity: 1; transform: translateY(0); }
 .gg-name {
   display: inline-block; font-family: 'Pinyon Script', cursive; line-height: 1;
   font-size: clamp(2.3rem, 10vw, 3.6rem);
-  color: var(--blue-deep);
-  text-shadow: 0 4px 22px rgba(201, 168, 118, 0.5);
+  color: var(--gold);
+  text-shadow: 0 4px 20px rgba(201, 168, 118, 0.4);
   opacity: 0; transform: translateY(16px) scale(0.85); filter: blur(5px);
-  transition: opacity 1s ease, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1s ease;
+  transition: opacity 1s ease 0.15s, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, filter 1s ease 0.15s;
 }
-.guest-greet.gg-in .gg-name { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+.guest-greet.gg-in .gg-name { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); animation: ggGlow 3.2s ease-in-out 1.2s infinite; }
+@keyframes ggGlow {
+  0%, 100% { text-shadow: 0 4px 18px rgba(201, 168, 118, 0.35); }
+  50% { text-shadow: 0 4px 28px rgba(201, 168, 118, 0.7); }
+}
 .gg-msg {
   display: block; font-family: 'Special Elite', monospace; font-size: 0.7rem; letter-spacing: 0.02em;
-  color: var(--blue-deep); margin-top: 8px; max-width: 260px; margin-left: auto; margin-right: auto;
+  color: var(--muted); margin-top: 10px; max-width: 260px; margin-left: auto; margin-right: auto;
   opacity: 0; transition: opacity 0.3s ease;
 }
 .guest-greet.gg-in .gg-msg { opacity: 1; }
@@ -708,7 +714,8 @@ body {
   .twk { animation: none !important; }
   .photo-single::before { animation: none !important; opacity: 0 !important; }
   .verse.vw-typing { animation: none !important; }
-  .gg-name { transition: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .gg-label { transition: none !important; opacity: 1 !important; transform: none !important; }
+  .gg-name { transition: none !important; animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
   .scroll-cue svg { animation: none !important; }
   .wish-item.wish-item-new { animation: none !important; }
   .rsvp-seal { transition: none !important; }
@@ -1807,8 +1814,8 @@ function initGuestGreeting() {
     setTimeout(() => {
       const r = nameEl.getBoundingClientRect();
       fireSparkles(r.left + r.width / 2, r.top + r.height / 2, ['#C9A876', '#E4CE9E', '#FFFFFF']);
-    }, 550);
-    setTimeout(() => typewriteGuestMsg(msgEl), 900);
+    }, 700);
+    setTimeout(() => typewriteGuestMsg(msgEl), 1300);
   });
 }
 
