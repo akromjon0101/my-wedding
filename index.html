@@ -245,22 +245,27 @@ body {
 .gg-name {
   display: inline-block; font-family: 'Pinyon Script', cursive; line-height: 1;
   font-size: clamp(2.3rem, 10vw, 3.6rem);
-  background: linear-gradient(135deg, #E28A9C 0%, var(--gold) 55%, #E28A9C 100%);
-  -webkit-background-clip: text; background-clip: text; color: #D9829A; -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 22px rgba(226, 138, 156, 0.4);
+  background: linear-gradient(135deg, var(--gold) 0%, #F5E3B8 45%, var(--blue) 100%);
+  -webkit-background-clip: text; background-clip: text; color: var(--gold); -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 22px rgba(201, 168, 118, 0.45);
   opacity: 0; transform: translateY(16px) scale(0.85); filter: blur(5px);
   transition: opacity 1s ease, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1s ease;
 }
 @supports not (-webkit-background-clip: text) {
-  .gg-name { color: #D9829A; }
+  .gg-name { color: var(--gold); }
 }
 .guest-greet.gg-in .gg-name { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 .gg-msg {
-  display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.92rem;
-  color: var(--blue-deep); margin-top: 6px; max-width: 280px; margin-left: auto; margin-right: auto;
-  opacity: 0; transform: translateY(8px); transition: opacity 0.9s ease 0.25s, transform 0.9s ease 0.25s;
+  display: block; font-family: 'Special Elite', monospace; font-size: 0.7rem; letter-spacing: 0.02em;
+  color: var(--blue-deep); margin-top: 8px; max-width: 260px; margin-left: auto; margin-right: auto;
+  opacity: 0; transition: opacity 0.3s ease;
 }
-.guest-greet.gg-in .gg-msg { opacity: 1; transform: translateY(0); }
+.guest-greet.gg-in .gg-msg { opacity: 1; }
+.gg-msg.gg-typing::after {
+  content: ''; display: inline-block; width: 2px; height: 0.9em; margin-left: 2px;
+  background: var(--gold); vertical-align: -0.1em; animation: ggCaretBlink 0.8s steps(1) infinite;
+}
+@keyframes ggCaretBlink { 50% { opacity: 0; } }
 .sec-names .tag { font-family: 'Special Elite', monospace; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-bottom: 14px; }
 .sec-names .verse {
   font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; line-height: 1.65;
@@ -1796,17 +1801,36 @@ function initGuestGreeting() {
   window.__guestName = raw.slice(0, 40);
   const wrap = document.getElementById('guestGreet');
   const nameEl = document.getElementById('guestGreetName');
+  const msgEl = document.getElementById('guestGreet').querySelector('.gg-msg');
   if (!wrap || !nameEl) return;
   nameEl.textContent = window.__guestName;
   wrap.hidden = false;
-  if (reduceMotion) { wrap.classList.add('gg-in'); return; }
+  if (reduceMotion) { wrap.classList.add('gg-in'); if (msgEl) msgEl.style.opacity = 1; return; }
   requestAnimationFrame(() => {
     wrap.classList.add('gg-in');
     setTimeout(() => {
       const r = nameEl.getBoundingClientRect();
       fireSparkles(r.left + r.width / 2, r.top + r.height / 2, ['#C9A876', '#E4CE9E', '#FFFFFF']);
     }, 550);
+    setTimeout(() => typewriteGuestMsg(msgEl), 900);
   });
+}
+
+/* Types the greeting message out letter by letter, like a typewriter, once the name lands */
+function typewriteGuestMsg(el) {
+  if (!el || window.__ggMsgTyped) return;
+  window.__ggMsgTyped = true;
+  const full = el.textContent;
+  el.textContent = '';
+  el.style.opacity = 1;
+  el.classList.add('gg-typing');
+  let i = 0;
+  (function step() {
+    i++;
+    el.textContent = full.slice(0, i);
+    if (i < full.length) { setTimeout(step, 32); }
+    else { el.classList.remove('gg-typing'); }
+  })();
 }
 
 /* Scroll progress bar */
